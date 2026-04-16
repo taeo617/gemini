@@ -3,953 +3,836 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>태영전자 에어프라이어 디자인 전략 보고서</title>
-<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" rel="stylesheet">
+<title>데스크 리서치 보고서 - 태영전자 미니멀 에어프라이어</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
   :root {
     --primary: #0055FF;
-    --bg-main: #F5F5F5;
-    --bg-page: #FFFFFF;
+    --bg-color: #F5F5F5;
+    --white: #FFFFFF;
     --text-main: #1A202C;
     --text-caption: #718096;
     --border: #E2E8F0;
-    --bg-insight: #F8FAFC;
+    --insight-bg: #F8FAFC;
     --gradient: linear-gradient(135deg, #0044EE 0%, #0596FB 100%);
-    
-    /* CMF Mood Colors */
-    --balmuda-white: #F4F4F0;
-    --balmuda-dark: #333333;
-    --balmuda-beige: #E6E2D8;
   }
 
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Pretendard', sans-serif;
-    word-break: keep-all;
-  }
-
-  body {
-    background-color: var(--bg-main);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
-    padding: 40px 0;
-  }
-
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Pretendard', sans-serif; background-color: var(--bg-color); color: var(--text-main); display: flex; flex-direction: column; align-items: center; gap: 40px; padding: 40px 0; }
+  
   .a4-page {
-    width: 210mm;
-    height: 297mm;
-    background-color: var(--bg-page);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    border-radius: 12px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    flex-shrink: 0;
+    width: 210mm; height: 297mm; background-color: var(--white); box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    display: flex; flex-direction: column; position: relative; overflow: hidden; flex-shrink: 0;
   }
 
   /* Header & Footer */
-  .header {
-    height: 80px;
-    padding: 0 40px 16px 40px; /* 텍스트를 라인에 더 가깝게 배치 */
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end; /* 하단 정렬 */
-    flex-shrink: 0;
-    position: relative;
+  .page-header {
+    height: 80px; padding: 0 40px 16px 40px; display: flex; justify-content: space-between; align-items: flex-end; flex-shrink: 0; position: relative;
   }
-  
-  .header::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 40px;
-    right: 40px;
-    height: 1px;
-    background-color: var(--border);
-  }
+  .page-header::after { content: ''; position: absolute; bottom: 0; left: 40px; right: 40px; height: 1px; background-color: var(--border); }
+  .header-left { font-size: 11px; font-weight: 800; letter-spacing: 0.05em; color: var(--text-caption); }
+  .header-right { font-size: 12px; font-weight: 700; color: var(--primary); }
 
-  .header .title {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text-caption);
-    letter-spacing: 0.05em;
+  .page-footer {
+    height: 80px; padding: 16px 40px 0 40px; display: flex; justify-content: space-between; align-items: flex-start; flex-shrink: 0; position: relative;
   }
-
-  .header .page-num {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text-caption);
-  }
-
-  .footer {
-    height: 80px;
-    padding: 16px 40px 0 40px; /* 텍스트를 라인에 더 가깝게 배치 */
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start; /* 상단 정렬 */
-    flex-shrink: 0;
-    position: relative;
-  }
-  
-  .footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 40px;
-    right: 40px;
-    height: 1px;
-    background-color: var(--border);
-  }
-
-  .footer .client {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text-main);
-    letter-spacing: 0.05em;
-  }
-
-  .footer .confidential {
-    position: absolute;
-    left: 50%;
-    top: 14px; /* 변경된 정렬 기준에 맞춰 배지 위치 미세조정 */
-    transform: translateX(-50%);
-    background-color: #E53E3E;
-    color: white;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 4px 12px;
-    border-radius: 4px;
-    letter-spacing: 0.05em;
-  }
-
-  .footer .copyright {
-    font-size: 12px;
-    color: var(--text-caption);
-  }
-  .footer .copyright strong {
-    font-weight: 600;
-    color: var(--text-main);
-  }
-
-  /* Content Area */
-  .content {
-    flex-grow: 1;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
+  .page-footer::before { content: ''; position: absolute; top: 0; left: 40px; right: 40px; height: 1px; background-color: var(--border); }
+  .footer-left { font-size: 11px; font-weight: 800; letter-spacing: 0.05em; color: var(--text-caption); }
+  .footer-center .badge { background-color: #E53E3E; color: white; font-size: 9px; font-weight: 800; padding: 3px 8px; border-radius: 4px; letter-spacing: 0.05em; }
+  .footer-right { font-size: 10px; font-weight: 400; color: var(--text-caption); }
+  .footer-right span { font-weight: 400; color: var(--text-caption); }
 
   /* Typography */
-  h1 { font-size: 32px; font-weight: 800; letter-spacing: -0.02em; color: var(--text-main); line-height: 1.3; margin-bottom: 16px; }
-  h2 { font-size: 20px; font-weight: 700; color: var(--text-main); margin-bottom: 24px; line-height: 1.4; }
-  h3 { font-size: 16px; font-weight: 700; color: var(--text-main); margin-bottom: 12px; }
-  p { font-size: 15px; font-weight: 400; color: var(--text-main); line-height: 1.6; }
-  .number { font-size: 48px; font-weight: 900; letter-spacing: -0.01em; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  h1 { font-size: 32px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.3; word-break: keep-all; }
+  h2 { font-size: 20px; font-weight: 700; line-height: 1.4; word-break: keep-all; margin-bottom: 24px; }
+  .data-number { font-size: 48px; font-weight: 900; letter-spacing: -0.01em; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; }
+  p { font-size: 15px; font-weight: 400; line-height: 1.6; color: var(--text-main); word-break: keep-all; }
   .caption { font-size: 13px; font-weight: 600; color: var(--text-caption); }
-
-  /* Insight Box */
-  .insight-box {
-    background-color: var(--bg-insight);
-    border-radius: 12px;
-    padding: 24px;
-    margin-top: auto;
-    border: 1px solid var(--border);
-  }
-  .insight-box .label {
-    display: inline-block;
-    color: var(--primary);
-    font-size: 13px;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-  .insight-box p {
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--text-main);
-  }
+  
+  /* Content Area */
+  .content { flex-grow: 1; padding: 40px; display: flex; flex-direction: column; overflow: hidden; }
+  .content-title { margin-bottom: 40px; }
+  .content-title p { color: var(--text-caption); font-size: 14px; margin-top: 8px; }
 
   /* Components */
-  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
-  
-  .card {
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 24px;
-    background: #fff;
-  }
+  .card { border: 1px solid var(--border); border-radius: 12px; padding: 24px; background: var(--white); }
+  .card-blue { background: var(--insight-bg); border-radius: 12px; padding: 24px; border: 1px solid #E2E8F0; }
+  .insight-box { background: var(--insight-bg); border-radius: 12px; padding: 20px 24px; margin-top: auto; display: flex; gap: 16px; align-items: flex-start; border-left: 4px solid var(--primary); }
+  .insight-box strong { color: var(--primary); font-size: 15px; flex-shrink: 0; }
+  .insight-box p { font-size: 14px; font-weight: 500; margin: 0; }
 
-  /* Cover Page */
-  .cover-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
-    padding: 0 40px;
-  }
-  .cover-title { font-size: 56px; font-weight: 900; line-height: 1.2; margin-bottom: 24px; letter-spacing: -0.03em; }
-  .cover-subtitle { font-size: 24px; font-weight: 500; color: var(--text-caption); line-height: 1.5; }
-  .cover-brand { margin-top: auto; font-size: 24px; font-weight: 800; color: var(--primary); }
+  /* Layout Utilities */
+  .row { display: flex; gap: 24px; }
+  .col { flex: 1; display: flex; flex-direction: column; }
+  .gap-16 { gap: 16px; }
+  .gap-24 { gap: 24px; }
+  .gap-32 { gap: 32px; }
 
-  /* Table */
-  table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-  th, td { padding: 16px; text-align: left; border-bottom: 1px solid var(--border); font-size: 14px; }
-  th { background-color: var(--primary); color: white; font-weight: 600; border-bottom: none; }
-  th:first-child { border-top-left-radius: 8px; }
-  th:last-child { border-top-right-radius: 8px; }
+  /* Charts & Visuals (CSS Only) */
+  .donut-chart { width: 64px; height: 64px; border-radius: 50%; background: conic-gradient(var(--primary) 0% 35.6%, var(--border) 35.6% 100%); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .donut-inner { width: 44px; height: 44px; background: var(--white); border-radius: 50%; }
+  .trend-box { width: 64px; height: 64px; border-radius: 12px; background: rgba(0,85,255,0.1); display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; }
+  .trend-arrow-up { width: 0; height: 0; border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom: 12px solid var(--primary); margin-bottom: 4px; }
   
-  /* Bar Chart */
-  .bar-chart-container { margin-top: 20px; }
-  .bar-row { display: flex; align-items: center; margin-bottom: 16px; }
-  .bar-label { width: 100px; font-size: 14px; font-weight: 600; }
-  .bar-track { flex-grow: 1; height: 24px; background: var(--bg-main); border-radius: 12px; overflow: hidden; margin: 0 16px; }
-  .bar-fill { height: 100%; background: var(--gradient); border-radius: 12px; display: flex; align-items: center; justify-content: flex-end; padding-right: 12px; color: white; font-size: 12px; font-weight: 700; }
-  
+  /* Infographic Bar Chart */
+  .chart-container { position: relative; height: 160px; margin-top: 50px; border-bottom: 2px solid var(--text-main); display: flex; align-items: flex-end; justify-content: space-around; z-index: 1; }
+  .chart-grid { position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 0; display: flex; flex-direction: column; justify-content: space-between; pointer-events: none; }
+  .chart-grid-line { border-bottom: 1px dashed var(--border); width: 100%; height: 25%; }
+  .infographic-bar-wrap { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; width: 60px; }
+  .infographic-bar { width: 32px; background: #E2E8F0; border-radius: 6px 6px 0 0; position: relative; transition: all 0.3s ease; }
+  .infographic-bar.active { background: var(--gradient); width: 44px; box-shadow: 0 4px 16px rgba(0,85,255,0.3); }
+  .infographic-val { font-size: 14px; font-weight: 800; margin-bottom: 8px; color: var(--text-caption); }
+  .infographic-bar-wrap.active .infographic-val { position: absolute; top: -38px; background: var(--text-main); color: var(--white); padding: 4px 12px; border-radius: 12px; font-size: 15px; font-weight: 800; white-space: nowrap; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+  .infographic-bar-wrap.active .infographic-val::after { content: ''; position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%); border-width: 5px 5px 0; border-style: solid; border-color: var(--text-main) transparent transparent transparent; }
+  .infographic-label { font-size: 13px; font-weight: 600; color: var(--text-caption); position: absolute; bottom: -28px; }
+  .infographic-bar-wrap.active .infographic-label { color: var(--text-main); font-weight: 800; }
+
+  .bar-chart { display: flex; align-items: flex-end; gap: 30px; height: 180px; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-top: 20px; }
+  .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 8px; }
+  .bar { width: 100%; max-width: 60px; background: var(--border); border-radius: 6px 6px 0 0; transition: height 0.5s; position: relative; }
+  .bar.active { background: var(--gradient); }
+  .bar-val { font-size: 14px; font-weight: 800; margin-bottom: 4px; }
+  .bar-label { font-size: 12px; color: var(--text-caption); text-align: center; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; margin-top: 10px; border: 1px solid var(--border); }
+  th { background: var(--primary); color: white; font-weight: 600; font-size: 13px; text-align: left; padding: 14px 16px; border: 1px solid var(--border); }
+  td { padding: 16px; border: 1px solid var(--border); font-size: 14px; line-height: 1.6; }
+
   /* Positioning Map */
-  .pos-map { position: relative; width: 100%; height: 400px; background: #fff; border: 1px solid var(--border); border-radius: 12px; margin-top: 20px; }
-  .pos-axis-x { position: absolute; top: 50%; left: 0; width: 100%; border-top: 1px dashed var(--border); }
-  .pos-axis-y { position: absolute; top: 0; left: 50%; height: 100%; border-left: 1px dashed var(--border); }
-  .pos-label { position: absolute; font-size: 12px; font-weight: 700; color: var(--text-caption); }
-  .pos-top { top: 12px; left: 50%; transform: translateX(-50%); }
-  .pos-bottom { bottom: 12px; left: 50%; transform: translateX(-50%); }
-  .pos-left { left: 12px; top: 50%; transform: translateY(-50%); }
-  .pos-right { right: 12px; top: 50%; transform: translateY(-50%); }
+  .pos-map-container { position: relative; width: 100%; height: 400px; margin-top: 20px; }
+  .pos-axis-x { position: absolute; top: 50%; left: 0; right: 0; height: 1px; border-top: 1px dashed var(--border); }
+  .pos-axis-y { position: absolute; top: 0; bottom: 0; left: 50%; width: 1px; border-left: 1px dashed var(--border); }
+  .pos-label { position: absolute; font-size: 12px; font-weight: 700; color: var(--text-caption); background: var(--white); padding: 4px; }
+  .pos-label.top { top: 0; left: 50%; transform: translateX(-50%); }
+  .pos-label.bottom { bottom: 0; left: 50%; transform: translateX(-50%); }
+  .pos-label.left { top: 50%; left: 0; transform: translateY(-50%); }
+  .pos-label.right { top: 50%; right: 0; transform: translateY(-50%); }
   
-  .pos-node { position: absolute; display: flex; flex-direction: column; align-items: center; transform: translate(-50%, -50%); }
-  .pos-dot { width: 16px; height: 16px; background: var(--primary); border-radius: 50%; border: 3px solid #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-  .pos-text { margin-top: 8px; font-size: 13px; font-weight: 700; white-space: nowrap; text-align: center; }
-  .pos-sub { font-size: 11px; font-weight: 400; color: var(--text-caption); }
+  .pos-node { position: absolute; display: flex; flex-direction: column; align-items: center; gap: 6px; transform: translate(-50%, -50%); }
+  .pos-dot { width: 16px; height: 16px; background: var(--text-caption); border-radius: 50%; border: 3px solid var(--white); box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+  .pos-node.target .pos-dot { background: var(--primary); width: 20px; height: 20px; }
+  .pos-text { font-size: 12px; font-weight: 700; white-space: nowrap; text-align: center; }
+  .pos-text span { display: block; font-size: 10px; font-weight: 500; color: var(--text-caption); }
 
-  /* Wireframe SVG Container */
-  .wireframe-box { background: var(--bg-insight); border: 2px dashed var(--border); border-radius: 12px; padding: 24px; text-align: center; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+  /* Journey Map */
+  .journey-map { position: relative; width: 100%; height: 300px; display: flex; margin-top: 40px; }
+  .jm-bg-line { position: absolute; top: 120px; left: 50px; right: 50px; height: 2px; background: linear-gradient(90deg, rgba(0,85,255,0.1) 0%, rgba(0,85,255,1) 50%, rgba(0,85,255,0.1) 100%); z-index: 1; }
+  .jm-step { flex: 1; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 2; }
+  .jm-bubble { background: var(--insight-bg); border: 1px solid var(--border); padding: 12px; border-radius: 8px; font-size: 12px; font-weight: 600; text-align: center; margin-bottom: 20px; width: 120px; height: 70px; display: flex; align-items: center; justify-content: center; word-break: keep-all; }
+  .jm-v-line { width: 1px; height: 30px; border-left: 1px dashed var(--primary); margin-bottom: 10px; }
+  .jm-node { width: 24px; height: 24px; background: var(--white); border: 3px solid var(--primary); border-radius: 50%; margin-bottom: 16px; }
+  .jm-node.pain { border-color: #E53E3E; background: #FFF5F5; }
+  .jm-label { font-size: 14px; font-weight: 700; text-align: center; }
+  .jm-desc { font-size: 12px; color: var(--text-caption); text-align: center; margin-top: 8px; word-break: keep-all; }
 
-  /* Print */
+  /* Wireframes */
+  .wireframe-box { border: 2px dashed var(--border); border-radius: 12px; height: 240px; display: flex; align-items: center; justify-content: center; position: relative; background: #FAFAFA; }
+  .wf-draw { position: relative; border: 2px solid var(--text-main); }
+  /* Type: Drawer */
+  .wf-drawer { width: 100px; height: 140px; border-radius: 16px; border-radius: 20px 20px 10px 10px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 20px; }
+  .wf-drawer-handle { width: 40px; height: 8px; border: 2px solid var(--text-main); border-radius: 4px; margin-top: 10px; }
+  .wf-drawer-split { width: 100%; height: 2px; background: var(--text-main); margin-top: 20px; }
+  /* Type: Oven */
+  .wf-oven { width: 140px; height: 120px; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+  .wf-oven-window { width: 90px; height: 80px; border: 2px solid var(--text-caption); border-radius: 4px; position: relative; }
+  .wf-oven-handle { position: absolute; top: 10px; right: -15px; width: 6px; height: 60px; border: 2px solid var(--text-main); border-radius: 3px; }
+  /* Type: Top Open */
+  .wf-topopen { width: 120px; height: 100px; border-radius: 10px 10px 40px 40px; display: flex; flex-direction: column; align-items: center; }
+  .wf-topopen-lid { width: 120px; height: 30px; border-bottom: 2px solid var(--text-main); border-radius: 20px 20px 0 0; position: relative; }
+  .wf-topopen-dial { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 20px; height: 10px; border: 2px solid var(--text-main); border-radius: 4px 4px 0 0; }
+  /* Target Proposal */
+  .wf-proposal { width: 110px; height: 150px; border: 3px solid var(--primary); border-radius: 20px; background: var(--white); display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; }
+  .wf-prop-dial { width: 30px; height: 30px; border: 2px solid var(--primary); border-radius: 50%; }
+  .wf-prop-line { position: absolute; top: 40px; width: 100%; border-top: 2px solid rgba(0,85,255,0.2); }
+
   @media print {
     @page { size: A4; margin: 0; }
     body { background-color: #FFFFFF; padding: 0; gap: 0; display: block; }
-    .a4-page { width: 210mm; height: 297mm; box-shadow: none; page-break-after: always; border-radius: 0; }
+    .a4-page { width: 210mm; height: 297mm; box-shadow: none; page-break-after: always; }
   }
 </style>
 </head>
 <body>
 
-<!-- 01P: Cover -->
-<div class="a4-page">
-  <div class="header">
-    <div class="title">PRODUCT RESEARCH REPORT</div>
-  </div>
-  <div class="cover-content">
-    <div class="cover-title">태영전자<br>에어프라이어<br>디자인 전략 보고서</div>
-    <div class="cover-subtitle">1-2인 자취 청년 가구를 위한<br>미니멀 인테리어 & 가성비 폼팩터 도출</div>
-    <div class="insight-box" style="margin-top: 40px; flex-grow: 0;">
-      <p style="font-size: 16px; line-height: 1.6;">
-        <strong>Target:</strong> 2030 1-2인 자취 가구<br>
-        <strong>Positioning:</strong> 7만 원대 합리적 가격, 감성적 미니멀리즘(Balmuda Mood)<br>
-        <strong>Key Challenge:</strong> 협소한 주방 공간 극복 및 조리 냄새 저감
-      </p>
+  <!-- 01P: Cover Page -->
+  <div class="a4-page">
+    <div class="page-header">
+      <div class="header-left">PRODUCT RESEARCH REPORT</div>
+      <div class="header-right"></div>
     </div>
-  </div>
-  <div class="footer">
-    <div class="client">TAEYOUNG ELECTRONICS</div>
-    <div class="confidential">CONFIDENTIAL</div>
-    <div class="copyright">©<strong>found/Founded</strong>. All rights reserved.</div>
-  </div>
-</div>
-
-<!-- 02P: Index -->
-<div class="a4-page">
-  <div class="header">
-    <div class="title">PRODUCT RESEARCH REPORT</div>
-    <div class="page-num">02/14</div>
-  </div>
-  <div class="content" style="justify-content: center; padding: 60px;">
-    <h1>INDEX</h1>
-    <div style="width: 40px; height: 4px; background: var(--primary); margin-bottom: 60px;"></div>
-    
-    <div style="display: flex; flex-direction: column; gap: 24px;">
-      <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 12px;">
-        <span style="font-size: 18px; font-weight: 700;">1. 시장 개요 및 1인가구 트렌드 분석</span>
-        <span style="font-size: 16px; font-weight: 600; color: var(--text-caption);">03P</span>
-      </div>
-      <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 12px;">
-        <span style="font-size: 18px; font-weight: 700;">2. 타겟 인사이트 및 심층 행동 분석</span>
-        <span style="font-size: 16px; font-weight: 600; color: var(--text-caption);">05P</span>
-      </div>
-      <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 12px;">
-        <span style="font-size: 18px; font-weight: 700;">3. 폼팩터 및 개폐 방식 구조 분석</span>
-        <span style="font-size: 16px; font-weight: 600; color: var(--text-caption);">07P</span>
-      </div>
-      <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 12px;">
-        <span style="font-size: 18px; font-weight: 700;">4. 디자인 경쟁사 분석 및 포지셔닝 맵</span>
-        <span style="font-size: 16px; font-weight: 600; color: var(--text-caption);">08P</span>
-      </div>
-      <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 12px;">
-        <span style="font-size: 18px; font-weight: 700;">5. 타겟 페르소나 및 유저 저니맵</span>
-        <span style="font-size: 16px; font-weight: 600; color: var(--text-caption);">09P</span>
-      </div>
-      <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 12px;">
-        <span style="font-size: 18px; font-weight: 700;">6. 기회 요소 도출 및 폼팩터/CMF 전략</span>
-        <span style="font-size: 16px; font-weight: 600; color: var(--text-caption);">11P</span>
-      </div>
-      <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 12px;">
-        <span style="font-size: 18px; font-weight: 700;">7. Appendix (Data Sources)</span>
-        <span style="font-size: 16px; font-weight: 600; color: var(--text-caption);">14P</span>
+    <div class="content" style="justify-content: center; padding-left: 60px;">
+      <div style="width: 60px; height: 4px; background: var(--primary); margin-bottom: 24px;"></div>
+      <h1 style="font-size: 48px; margin-bottom: 16px;">미니멀 & 이지클린<br>에어프라이어 디자인 전략</h1>
+      <p style="font-size: 18px; color: var(--text-caption); margin-bottom: 80px;">1~2인 청년 가구 타겟 가성비 주방 가전 기획 리포트</p>
+      
+      <div style="margin-top: auto;">
+        <div class="caption" style="margin-bottom: 8px;">PREPARED FOR</div>
+        <div style="font-size: 20px; font-weight: 800;">TAEYOUNG ELECTRONICS</div>
       </div>
     </div>
+    <div class="page-footer">
+      <div class="footer-left">TAEYOUNG ELECTRONICS</div>
+      <div class="footer-center"><span class="badge">CONFIDENTIAL</span></div>
+      <div class="footer-right">©<span>found</span>/Founded. All rights reserved.</div>
+    </div>
   </div>
-  <div class="footer">
-    <div class="client">TAEYOUNG ELECTRONICS</div>
-    <div class="confidential">CONFIDENTIAL</div>
-    <div class="copyright">©<strong>found/Founded</strong>. All rights reserved.</div>
-  </div>
-</div>
 
-<!-- 03P: Market Overview -->
-<div class="a4-page">
-  <div class="header">
-    <div class="title">PRODUCT RESEARCH REPORT</div>
-    <div class="page-num">03/14</div>
-  </div>
-  <div class="content">
-    <h1>1. 시장 개요 및 1인가구 트렌드 분석</h1>
-    <h2>폭발적으로 증가하는 1인가구와 주방의 축소</h2>
-    <p>2023년 통계청 발표에 따르면 국내 1인 가구 비율은 전체의 약 34.5%를 넘어섰습니다. 특히 2030 청년층의 1인 가구는 원룸이나 소형 오피스텔에 거주하며, 주방 공간(카운터탑)이 극도로 협소하다는 물리적 제약을 가지고 있습니다.</p>
-    
-    <div class="grid-2" style="margin-top: 30px;">
-      <div class="card">
-        <h3>국내 1인 가구 비중 변화</h3>
-        <div class="bar-chart-container">
-          <div class="bar-row"><div class="bar-label">2018년</div><div class="bar-track"><div class="bar-fill" style="width: 65%;">29.3%</div></div></div>
-          <div class="bar-row"><div class="bar-label">2020년</div><div class="bar-track"><div class="bar-fill" style="width: 75%;">31.7%</div></div></div>
-          <div class="bar-row"><div class="bar-label">2022년</div><div class="bar-track"><div class="bar-fill" style="width: 85%;">34.5%</div></div></div>
+  <!-- 02P: Index -->
+  <div class="a4-page">
+    <div class="page-header">
+      <div class="header-left">PRODUCT RESEARCH REPORT</div>
+      <div class="header-right">02 / 14</div>
+    </div>
+    <div class="content">
+      <div class="content-title">
+        <h1>Table of Contents</h1>
+      </div>
+      <div class="col gap-24" style="margin-top: 40px;">
+        <div class="row" style="justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 16px;">
+          <h2 style="margin:0;">1. 시장 개요 및 소비자 트렌드</h2>
+          <span class="caption">03P - 04P</span>
         </div>
-        <div class="caption" style="margin-top: 10px; text-align: right;">(출처: 통계청, 2023)</div>
-      </div>
-      <div class="card">
-        <h3>에어프라이어 시장 트렌드</h3>
-        <p style="font-size: 14px; margin-bottom: 12px;">초기 '대용량 경쟁'을 지나, 현재 시장은 두 갈래로 양극화되었습니다. 하이엔드 다기능 오븐형(20만 원 이상)과, 1-2인용 소형 오브제형(10만 원 미만)입니다.</p>
-        <ul style="font-size: 14px; padding-left: 20px; line-height: 1.8;">
-          <li><strong>과거:</strong> "거거익선" (5L 이상 대용량 선호)</li>
-          <li><strong>현재:</strong> "공간효율 & 디자인" (2~3L 소형 선호)</li>
-          <li><strong>보급률:</strong> 가구당 약 70% 이상 (필수가전화)</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="insight-box">
-      <span class="label">→ 핵심 디자인 인사이트</span>
-      <p>에어프라이어는 이제 전자레인지를 대체하는 '제2의 필수 주방가전'입니다. 하지만 청년 1인가구의 주방에는 대용량 제품을 놓을 공간이 없습니다. <strong>바닥 면적(Footprint)을 최소화하면서도 인테리어 소품처럼 보이는 2~3L 용량의 '세로형 폼팩터'</strong>가 시장의 빈 공간입니다.</p>
-    </div>
-  </div>
-  <div class="footer">
-    <div class="client">TAEYOUNG ELECTRONICS</div>
-    <div class="confidential">CONFIDENTIAL</div>
-    <div class="copyright">©<strong>found/Founded</strong>. All rights reserved.</div>
-  </div>
-</div>
-
-<!-- 04P: Macro Trends -->
-<div class="a4-page">
-  <div class="header">
-    <div class="title">PRODUCT RESEARCH REPORT</div>
-    <div class="page-num">04/14</div>
-  </div>
-  <div class="content">
-    <h1>1. 시장 개요 및 1인가구 트렌드 분석</h1>
-    <h2>가전의 가구화 : Balmuda Mood의 부상</h2>
-    <p>오픈서베이의 가전제품 트렌드 리포트(2023)에 따르면, 2030 세대가 소형 가전을 구매할 때 '성능' 다음으로 고려하는 요소가 <strong>'집안 인테리어와의 조화(디자인)'</strong>입니다. 가성비 제품이라 할지라도 값싼 플라스틱 느낌을 기피합니다.</p>
-    
-    <div class="grid-3" style="margin-top: 30px;">
-      <div class="card" style="text-align: center;">
-        <div class="number">68%</div>
-        <p style="font-size: 13px; margin-top: 8px;">"가전제품 디자인이 내 방의 인테리어를 해치지 않아야 한다"</p>
-      </div>
-      <div class="card" style="text-align: center;">
-        <div class="number">1위</div>
-        <p style="font-size: 13px; margin-top: 8px;">소형 가전 선호 컬러<br>(무광 화이트/베이지)</p>
-      </div>
-      <div class="card" style="text-align: center;">
-        <div class="number">7만</div>
-        <p style="font-size: 13px; margin-top: 8px;">1인가구가 에어프라이어에 지출할 의향이 있는 평균 금액</p>
+        <div class="row" style="justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 16px;">
+          <h2 style="margin:0;">2. 타겟 인사이트 및 행동 분석</h2>
+          <span class="caption">05P - 06P</span>
+        </div>
+        <div class="row" style="justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 16px;">
+          <h2 style="margin:0;">3. 폼팩터 경쟁사 및 포지셔닝 분석</h2>
+          <span class="caption">07P - 08P</span>
+        </div>
+        <div class="row" style="justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 16px;">
+          <h2 style="margin:0;">4. 유저 페르소나 및 저니맵</h2>
+          <span class="caption">09P - 10P</span>
+        </div>
+        <div class="row" style="justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 16px;">
+          <h2 style="margin:0;">5. 폼팩터 및 CMF, UX 디자인 전략</h2>
+          <span class="caption">11P - 13P</span>
+        </div>
+        <div class="row" style="justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 16px;">
+          <h2 style="margin:0;">6. Appendix (Data Sources)</h2>
+          <span class="caption">14P</span>
+        </div>
       </div>
     </div>
-
-    <div style="margin-top: 30px; display: flex; gap: 20px;">
-      <div style="flex: 1; background: var(--balmuda-white); border: 1px solid var(--border); border-radius: 12px; padding: 20px;">
-        <h3 style="color: var(--balmuda-dark);">Emotional Design (감성 디자인) 트렌드</h3>
-        <p style="font-size: 14px; line-height: 1.6;">발뮤다(Balmuda)가 선도한 감성 가전의 특징은 복잡한 디지털 디스플레이를 숨기고, 직관적인 아날로그 다이얼과 따뜻한 질감(Matte Finish)을 사용하는 것입니다. 이는 원룸이라는 좁은 공간에서 가전이 주는 '기계적인 차가움'을 중화시킵니다.</p>
-      </div>
-    </div>
-
-    <div class="insight-box">
-      <span class="label">→ 핵심 디자인 인사이트</span>
-      <p>7만 원이라는 제한된 제조 원가(BOM) 내에서 고급감을 주려면, 복잡한 LED 터치 패널이나 유광 크롬 도금을 배제해야 합니다. 대신 <strong>1개의 직관적인 아날로그 다이얼, 무광 웜 화이트(Warm White) 사출, 단차를 최소화한 심리스(Seamless) 디자인</strong>에 비용을 집중해야 '가성비 발뮤다' 포지셔닝이 가능합니다.</p>
+    <div class="page-footer">
+      <div class="footer-left">TAEYOUNG ELECTRONICS</div>
+      <div class="footer-center"><span class="badge">CONFIDENTIAL</span></div>
+      <div class="footer-right">©<span>found</span>/Founded. All rights reserved.</div>
     </div>
   </div>
-  <div class="footer">
-    <div class="client">TAEYOUNG ELECTRONICS</div>
-    <div class="confidential">CONFIDENTIAL</div>
-    <div class="copyright">©<strong>found/Founded</strong>. All rights reserved.</div>
-  </div>
-</div>
 
-<!-- 05P: Target Insight -->
-<div class="a4-page">
-  <div class="header">
-    <div class="title">PRODUCT RESEARCH REPORT</div>
-    <div class="page-num">05/14</div>
-  </div>
-  <div class="content">
-    <h1>2. 타겟 인사이트 및 심층 행동 분석</h1>
-    <h2>원룸 자취생의 식생활과 주방 제약</h2>
-    <p>대학내일20대연구소(2023) 자료를 기반으로 자취 청년의 조리 행태를 분석했습니다. 이들은 본격적인 요리보다는 '간편식(HMR), 냉동식품, 배달음식 데우기' 목적으로 에어프라이어를 사용합니다.</p>
-
-    <div class="card" style="margin-top: 24px;">
-      <h3>Top 3 조리 항목 (1-2인 가구)</h3>
-      <table style="margin-top: 10px;">
-        <tr>
-          <th>순위</th>
-          <th>조리 식품군</th>
-          <th>사용 빈도 및 특징</th>
-        </tr>
-        <tr>
-          <td>1위</td>
-          <td><strong>냉동 간편식</strong> (치킨너겟, 만두 등)</td>
-          <td>주 3~4회 / 부피가 작고 바삭함이 중요</td>
-        </tr>
-        <tr>
-          <td>2위</td>
-          <td><strong>배달음식 재가열</strong> (남은 치킨, 피자)</td>
-          <td>주 1~2회 / 수분 유지와 냄새 제거 중요</td>
-        </tr>
-        <tr>
-          <td>3위</td>
-          <td><strong>간단한 베이킹/구이</strong> (고구마, 토스트)</td>
-          <td>주 1회 / 온보딩 조리. 냄새 발생이 적음</td>
-        </tr>
-      </table>
+  <!-- 03P: Market Overview -->
+  <div class="a4-page">
+    <div class="page-header">
+      <div class="header-left">PRODUCT RESEARCH REPORT</div>
+      <div class="header-right">03 / 14</div>
     </div>
-
-    <h3 style="margin-top: 30px;">공간의 제약: 싱크대 카운터탑 분석</h3>
-    <div style="display: flex; gap: 20px;">
-      <div style="flex: 1; border: 2px dashed var(--border); border-radius: 12px; padding: 20px; position: relative; height: 120px; background: #fff;">
-        <div style="position: absolute; bottom: 20px; left: 20px; width: 60px; height: 60px; background: #E2E8F0; display: flex; align-items: center; justify-content: center; font-size: 12px;">전자레인지</div>
-        <div style="position: absolute; bottom: 20px; left: 100px; width: 40px; height: 40px; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-size: 10px; text-align: center;">에어프라이어<br>(여유공간)</div>
-        <p style="position: absolute; top: 10px; right: 20px; font-size: 12px; color: var(--text-caption);">일반적인 원룸 주방 (폭 1.2m 내외)</p>
-      </div>
-    </div>
-
-    <div class="insight-box">
-      <span class="label">→ 핵심 디자인 인사이트</span>
-      <p>조리 대상의 부피가 크지 않으므로 내부 용량은 2.5L 수준이면 충분합니다. 핵심은 원룸 싱크대 위에 전자레인지와 나란히 놓을 수 있도록 <strong>제품의 폭(Width)을 20cm 이하로 극단적으로 줄여야</strong> 합니다. 깊이(Depth)나 높이(Height)를 활용하는 구조가 필수적입니다.</p>
-    </div>
-  </div>
-  <div class="footer">
-    <div class="client">TAEYOUNG ELECTRONICS</div>
-    <div class="confidential">CONFIDENTIAL</div>
-    <div class="copyright">©<strong>found/Founded</strong>. All rights reserved.</div>
-  </div>
-</div>
-
-<!-- 06P: Pain Points -->
-<div class="a4-page">
-  <div class="header">
-    <div class="title">PRODUCT RESEARCH REPORT</div>
-    <div class="page-num">06/14</div>
-  </div>
-  <div class="content">
-    <h1>2. 타겟 인사이트 및 심층 행동 분석</h1>
-    <h2>핵심 페인포인트 (Pain Points) : 냄새와 세척</h2>
-    <p>기존 에어프라이어 사용자(특히 원룸 거주자)가 호소하는 가장 큰 불만은 기기의 성능이 아니라 사용 전후의 '거주 환경 오염'입니다.</p>
-
-    <div class="grid-2" style="margin-top: 30px;">
-      <div class="card" style="background: #FFF5F5; border-color: #FEB2B2;">
-        <h3 style="color: #C53030;">Pain Point 1: 조리 시 발생하는 냄새와 연기</h3>
-        <p style="font-size: 14px; margin-bottom: 12px;">원룸은 주방과 침실이 분리되지 않은 구조입니다. 삼겹살이나 생선을 에어프라이어로 돌리면 배기구를 통해 뿜어져 나온 기름 냄새가 침구와 옷에 스며듭니다.</p>
-        <div style="font-weight: 700; font-size: 13px; color: #E53E3E;">"냄새 베이는 게 싫어서 창문 열고 베란다에서 돌려요."</div>
+    <div class="content">
+      <div class="content-title">
+        <h1>1인 가구의 폭발적 증가와<br>소형 가전 시장의 재편</h1>
+        <p>통계청 인구주택총조사 및 가전 시장 동향 (2024년 기준)</p>
       </div>
       
-      <div class="card" style="background: #F0FFF4; border-color: #9AE6B4;">
-        <h3 style="color: #2F855A;">Pain Point 2: 열선(모기향) 및 바스켓 세척</h3>
-        <p style="font-size: 14px; margin-bottom: 12px;">기름기가 많은 음식을 조리한 후, 크고 무거운 바스켓을 좁은 싱크대에서 씻는 것은 큰 스트레스입니다. 특히 상단의 열선 커버에 튄 기름때는 청소가 불가능에 가깝습니다.</p>
-        <div style="font-weight: 700; font-size: 13px; color: #38A169;">"열선 닦다가 포기했어요. 위생이 제일 찝찝해요."</div>
-      </div>
-    </div>
-
-    <div class="insight-box">
-      <span class="label">→ 핵심 디자인 인사이트</span>
-      <p>단순한 디자인을 넘어 <strong>'탈취(Deodorization)' 기능</strong>이 이 제품의 USP(Unique Selling Proposition)가 되어야 합니다. 배기구 쪽에 교체 가능한 <strong>활성탄 카본 필터</strong>를 삽입할 수 있는 구조를 디자인하여 원룸 거주자의 냄새 스트레스를 줄이고, 내부 열선에 실리콘 또는 메쉬 쉴드를 적용해 오염을 막아야 합니다.</p>
-    </div>
-  </div>
-  <div class="footer">
-    <div class="client">TAEYOUNG ELECTRONICS</div>
-    <div class="confidential">CONFIDENTIAL</div>
-    <div class="copyright">©<strong>found/Founded</strong>. All rights reserved.</div>
-  </div>
-</div>
-
-<!-- 07P: Form Factor & Door Types -->
-<div class="a4-page">
-  <div class="header">
-    <div class="title">PRODUCT RESEARCH REPORT</div>
-    <div class="page-num">07/14</div>
-  </div>
-  <div class="content">
-    <h1>3. 폼팩터 및 개폐 방식 구조 분석</h1>
-    <h2>에어프라이어 개폐 방식(Door Type) 장단점 비교</h2>
-    <p>주방 공간이 협소한 타겟을 위해 3가지 주요 개폐 구조를 분석하고 최적의 폼팩터를 도출합니다.</p>
-
-    <div class="grid-3" style="margin-top: 24px;">
-      <!-- Type 1 -->
-      <div class="card" style="padding: 16px;">
-        <h3 style="font-size: 14px; text-align: center;">Type A. 서랍/바스켓형</h3>
-        <div class="wireframe-box" style="height: 140px; margin-bottom: 12px;">
-          <svg width="80" height="80" viewBox="0 0 100 100">
-            <rect x="20" y="10" width="60" height="80" rx="8" fill="none" stroke="#1A202C" stroke-width="3"/>
-            <rect x="25" y="40" width="50" height="40" rx="4" fill="none" stroke="#0055FF" stroke-width="3"/>
-            <line x1="40" y1="50" x2="60" y2="50" stroke="#0055FF" stroke-width="3" stroke-linecap="round"/>
-            <path d="M 50 40 L 50 10 M 45 15 L 50 10 L 55 15" stroke="#E53E3E" stroke-width="2" fill="none" transform="rotate(-90 50 25) translate(-30, 20)"/>
-          </svg>
-        </div>
-        <ul style="font-size: 12px; line-height: 1.5; padding-left: 16px;">
-          <li><strong>구조:</strong> 앞으로 당겨 여는 기본형</li>
-          <li><strong>장점:</strong> 직관적, 세척 용이</li>
-          <li><strong style="color:#E53E3E;">단점:</strong> 바스켓을 뺄 때 <b>전면 여유 공간</b>이 크게 필요함. 좁은 곳에서 불편.</li>
-        </ul>
-      </div>
-
-      <!-- Type 2 -->
-      <div class="card" style="padding: 16px;">
-        <h3 style="font-size: 14px; text-align: center;">Type B. 오븐/도어형</h3>
-        <div class="wireframe-box" style="height: 140px; margin-bottom: 12px;">
-          <svg width="80" height="80" viewBox="0 0 100 100">
-            <rect x="10" y="20" width="80" height="60" rx="8" fill="none" stroke="#1A202C" stroke-width="3"/>
-            <rect x="20" y="30" width="60" height="40" rx="4" fill="none" stroke="#0055FF" stroke-width="3"/>
-            <path d="M 10 80 L 30 110 L 70 110 L 90 80" stroke="#E53E3E" stroke-width="2" fill="none" stroke-dasharray="4 4"/>
-          </svg>
-        </div>
-        <ul style="font-size: 12px; line-height: 1.5; padding-left: 16px;">
-          <li><strong>구조:</strong> 앞으로 젖혀 여는 오븐 도어</li>
-          <li><strong>장점:</strong> 조리 과정 확인 가능</li>
-          <li><strong style="color:#E53E3E;">단점:</strong> 가로 폭이 넓어 <b>공간 차지 1위</b>. 도어가 바닥에 닿을 수 있음.</li>
-        </ul>
-      </div>
-
-      <!-- Type 3 -->
-      <div class="card" style="padding: 16px;">
-        <h3 style="font-size: 14px; text-align: center;">Type C. 수직 탑로딩형</h3>
-        <div class="wireframe-box" style="height: 140px; margin-bottom: 12px;">
-          <svg width="80" height="80" viewBox="0 0 100 100">
-            <rect x="30" y="30" width="40" height="60" rx="8" fill="none" stroke="#1A202C" stroke-width="3"/>
-            <path d="M 30 30 C 30 10 70 10 70 30" stroke="#0055FF" stroke-width="3" fill="none" stroke-dasharray="4 4"/>
-            <path d="M 50 30 L 50 10 M 45 15 L 50 10 L 55 15" stroke="#E53E3E" stroke-width="2" fill="none"/>
-          </svg>
-        </div>
-        <ul style="font-size: 12px; line-height: 1.5; padding-left: 16px;">
-          <li><strong>구조:</strong> 위로 뚜껑을 여는 원통형</li>
-          <li><strong>장점:</strong> 바닥 면적(Width) <b>최소화</b></li>
-          <li><strong style="color:#E53E3E;">단점:</strong> 상부장 간섭 우려. 음식을 꺼내기 위해 깊숙이 손을 넣어야 함.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="insight-box">
-      <span class="label">→ 핵심 디자인 인사이트 (신규 폼팩터 제안)</span>
-      <p>원룸 주방의 협소함을 극복하려면 바닥 면적을 극소화하는 <strong>'세로로 긴 슬림 타워형(Vertical Slim)'</strong> 바디가 필요합니다. 상부장 간섭을 피하기 위해 완전한 탑로딩(Type C)보다는, 바스켓이 사선으로 열리는 <strong>'틸팅(Tilting) 드로어'</strong> 또는 가로 폭을 줄이고 깊이를 늘린 <strong>'슬림 바스켓'</strong> 구조를 도입하여 전면 공간 사용량을 줄여야 합니다.</p>
-    </div>
-  </div>
-  <div class="footer">
-    <div class="client">TAEYOUNG ELECTRONICS</div>
-    <div class="confidential">CONFIDENTIAL</div>
-    <div class="copyright">©<strong>found/Founded</strong>. All rights reserved.</div>
-  </div>
-</div>
-
-<!-- 08P: Competitor & Positioning -->
-<div class="a4-page">
-  <div class="header">
-    <div class="title">PRODUCT RESEARCH REPORT</div>
-    <div class="page-num">08/14</div>
-  </div>
-  <div class="content">
-    <h1>4. 디자인 경쟁사 분석 및 포지셔닝 맵</h1>
-    <h2>현재 시장의 공백 찾기</h2>
-    <p>10만 원 이하의 소형/가성비 에어프라이어 시장과 감성 디자인 가전 시장의 교집합을 분석합니다.</p>
-
-    <div class="pos-map">
-      <div class="pos-axis-x"></div>
-      <div class="pos-axis-y"></div>
-      <div class="pos-label pos-top">Premium / High Price (15만원+)</div>
-      <div class="pos-label pos-bottom">Value / Low Price (7만원-)</div>
-      <div class="pos-label pos-left">Utility / Mechanical Design</div>
-      <div class="pos-label pos-right">Emotional / Interior Design</div>
-
-      <!-- Competitors -->
-      <div class="pos-node" style="top: 20%; left: 80%;">
-        <div class="pos-dot" style="background: #333;"></div>
-        <div class="pos-text">발뮤다(Balmuda)</div><div class="pos-sub">감성 오븐 (고가)</div>
-      </div>
-      <div class="pos-node" style="top: 30%; left: 20%;">
-        <div class="pos-dot" style="background: #0055FF;"></div>
-        <div class="pos-text">필립스 에센셜</div><div class="pos-sub">전통 바스켓형 (기계적)</div>
-      </div>
-      <div class="pos-node" style="top: 70%; left: 30%;">
-        <div class="pos-dot" style="background: #FF6600;"></div>
-        <div class="pos-text">샤오미 미지아</div><div class="pos-sub">가성비, 스마트 기능</div>
-      </div>
-      <div class="pos-node" style="top: 80%; left: 15%;">
-        <div class="pos-dot" style="background: #718096;"></div>
-        <div class="pos-text">저가형 PB 상품</div><div class="pos-sub">플라스틱 마감, 단조로움</div>
-      </div>
-
-      <!-- Target Position -->
-      <div class="pos-node" style="top: 75%; left: 85%; z-index: 10;">
-        <div class="pos-dot" style="background: #E53E3E; width: 24px; height: 24px; animation: pulse 2s infinite;"></div>
-        <div class="pos-text" style="color: #E53E3E; font-size: 15px;">태영전자 (Target)</div>
-        <div class="pos-sub" style="color: #E53E3E;">가성비 + 감성 디자인</div>
-      </div>
-    </div>
-
-    <div class="insight-box">
-      <span class="label">→ 핵심 디자인 인사이트</span>
-      <p>우하단 4사분면(저가형이면서도 인테리어 지향적인 영역)은 현재 뚜렷한 강자가 없습니다. 대다수 5-7만 원대 제품은 유광 블랙/크롬 조합의 기계적인 형태를 띠고 있습니다. 태영전자는 철저히 <strong>미니멀 큐빅(Cubic) 형태, 무광 파스텔/뉴트럴 톤 마감, 직관적 다이얼 1개</strong>만으로 이 빈 공간을 선점해야 합니다.</p>
-    </div>
-  </div>
-  <div class="footer">
-    <div class="client">TAEYOUNG ELECTRONICS</div>
-    <div class="confidential">CONFIDENTIAL</div>
-    <div class="copyright">©<strong>found/Founded</strong>. All rights reserved.</div>
-  </div>
-</div>
-
-<!-- 09P: Persona & Journey Map -->
-<div class="a4-page">
-  <div class="header">
-    <div class="title">PRODUCT RESEARCH REPORT</div>
-    <div class="page-num">09/14</div>
-  </div>
-  <div class="content">
-    <h1>5. 타겟 페르소나 및 유저 저니맵</h1>
-    
-    <div class="card" style="background: #F4F4F0; margin-bottom: 30px;">
-      <div style="display: flex; align-items: center; gap: 20px;">
-        <div style="width: 80px; height: 80px; background: #CBD5E0; border-radius: 50%; display: flex; justify-content: center; align-items: center;">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#4A5568" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-        </div>
-        <div>
-          <h2 style="margin-bottom: 4px; font-size: 22px;">김지훈 (26세, 사회초년생)</h2>
-          <p style="font-size: 14px; color: var(--text-caption);">거주지: 6평 원룸 | 라이프스타일: 퇴근 후 넷플릭스 보며 혼맥 즐김</p>
-          <p style="font-size: 14px; margin-top: 8px; font-weight: 500;">"예쁘지 않은 가전은 방에 두기 싫어요. 요리는 주로 냉동 치킨 뎁히는 정도?"</p>
-        </div>
-      </div>
-    </div>
-
-    <h3>User Journey: 저녁 야식 조리 과정</h3>
-    <!-- Hybrid HTML/SVG Journey Map -->
-    <div style="position: relative; width: 100%; height: 250px; margin-top: 20px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 20px;">
-      
-      <!-- SVG Connecting Lines -->
-      <svg width="100%" height="100" style="position: absolute; top: 110px; left: 0; z-index: 1;">
-        <path d="M 100 0 C 180 0, 250 50, 320 0 C 390 -50, 460 50, 530 0" stroke="#E2E8F0" stroke-width="4" fill="none" stroke-dasharray="8 8"/>
-      </svg>
-
-      <div style="display: flex; justify-content: space-between; height: 100%; position: relative; z-index: 2;">
-        <!-- Step 1 -->
-        <div style="display: flex; flex-direction: column; align-items: center; width: 25%;">
-          <div style="background: var(--bg-insight); padding: 8px 12px; border-radius: 8px; font-size: 12px; margin-bottom: 20px;">"어디다 두지?"</div>
-          <div style="width: 20px; height: 20px; background: var(--primary); border-radius: 50%; border: 4px solid #fff; box-shadow: 0 0 0 2px var(--primary);"></div>
-          <div style="font-weight: 700; font-size: 14px; margin-top: 16px;">1. 준비/배치</div>
-          <div style="font-size: 12px; color: var(--text-caption); text-align: center; margin-top: 8px;">좁은 싱크대에<br>올려둘 공간 찾기</div>
-        </div>
-        <!-- Step 2 -->
-        <div style="display: flex; flex-direction: column; align-items: center; width: 25%;">
-          <div style="background: var(--bg-insight); padding: 8px 12px; border-radius: 8px; font-size: 12px; margin-bottom: 20px;">"온도/시간 복잡해"</div>
-          <div style="width: 20px; height: 20px; background: #A0AEC0; border-radius: 50%; border: 4px solid #fff; margin-top: 30px;"></div>
-          <div style="font-weight: 700; font-size: 14px; margin-top: 16px;">2. 조리 세팅</div>
-          <div style="font-size: 12px; color: var(--text-caption); text-align: center; margin-top: 8px;">버튼이 많아<br>직관적이지 않음</div>
-        </div>
-        <!-- Step 3 -->
-        <div style="display: flex; flex-direction: column; align-items: center; width: 25%;">
-          <div style="background: #FFF5F5; color: #C53030; padding: 8px 12px; border-radius: 8px; font-size: 12px; margin-bottom: 20px; border: 1px solid #FEB2B2;">"방에 냄새 다 배네"</div>
-          <div style="width: 20px; height: 20px; background: #E53E3E; border-radius: 50%; border: 4px solid #fff; margin-top: -10px;"></div>
-          <div style="font-weight: 700; font-size: 14px; margin-top: 16px;">3. 조리 중</div>
-          <div style="font-size: 12px; color: var(--text-caption); text-align: center; margin-top: 8px;">배기구에서 뿜어지는<br>음식 냄새 확산</div>
-        </div>
-        <!-- Step 4 -->
-        <div style="display: flex; flex-direction: column; align-items: center; width: 25%;">
-          <div style="background: var(--bg-insight); padding: 8px 12px; border-radius: 8px; font-size: 12px; margin-bottom: 20px;">"기름때 씻기 귀찮아"</div>
-          <div style="width: 20px; height: 20px; background: #A0AEC0; border-radius: 50%; border: 4px solid #fff; margin-top: 10px;"></div>
-          <div style="font-weight: 700; font-size: 14px; margin-top: 16px;">4. 세척/정리</div>
-          <div style="font-size: 12px; color: var(--text-caption); text-align: center; margin-top: 8px;">바스켓과 열선망의<br>기름기 제거</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="footer">
-    <div class="client">TAEYOUNG ELECTRONICS</div>
-    <div class="confidential">CONFIDENTIAL</div>
-    <div class="copyright">©<strong>found/Founded</strong>. All rights reserved.</div>
-  </div>
-</div>
-
-<!-- 10P: Journey Map Deep Dive & Opportunities -->
-<div class="a4-page">
-  <div class="header">
-    <div class="title">PRODUCT RESEARCH REPORT</div>
-    <div class="page-num">10/14</div>
-  </div>
-  <div class="content">
-    <h1>5. 타겟 페르소나 및 유저 저니맵</h1>
-    <h2>기회 요소 (Opportunity) 도출</h2>
-    <p>앞서 도출한 유저 저니맵의 Pain Point(가장 불만이 높은 구간)를 해결하기 위한 디자인 및 설계 기회 요소를 정의합니다.</p>
-
-    <div class="grid-2" style="margin-top: 30px;">
-      <!-- Opp 1 -->
-      <div class="card">
-        <h3 style="color: var(--primary);">기회 1: 탈취 시스템(Deodorize) 통합</h3>
-        <p style="font-size: 14px; color: var(--text-caption); margin-bottom: 12px;">Step 3(조리 중 냄새) 해결</p>
-        <p style="font-size: 14px; line-height: 1.6;">후면 배기구 디자인을 단순히 구멍을 뚫는 수준을 넘어, 소형 탈취 필터(활성탄 패드)를 끼울 수 있는 슬롯 형태로 디자인합니다. 이는 "냄새 없는 에어프라이어"라는 강력한 마케팅 포인트가 됩니다.</p>
-        <div style="margin-top: 16px; padding: 12px; background: var(--bg-main); border-radius: 8px; font-size: 13px;">
-          <strong>UX 제안:</strong> 원터치 '에어클린' 버튼 적용 (조리 후 30초 팬만 돌아 냄새 제거)
-        </div>
-      </div>
-
-      <!-- Opp 2 -->
-      <div class="card">
-        <h3 style="color: var(--primary);">기회 2: 발뮤다 스타일의 'One-Dial' UI</h3>
-        <p style="font-size: 14px; color: var(--text-caption); margin-bottom: 12px;">Step 2(복잡한 세팅) 해결</p>
-        <p style="font-size: 14px; line-height: 1.6;">저가형의 조잡한 LED 버튼을 모두 삭제하고, 아날로그 감성의 다이얼 하나로 시간과 온도를 조절하게 만듭니다. 다이얼 클릭으로 작동을 시작하는 직관적이고 감성적인 인터랙션을 부여합니다.</p>
-        <div style="margin-top: 16px; padding: 12px; background: var(--bg-main); border-radius: 8px; font-size: 13px;">
-          <strong>디자인 제안:</strong> 다이얼 테두리에 은은한 화이트 LED 링 인디케이터 적용
-        </div>
-      </div>
-    </div>
-
-    <div class="insight-box">
-      <span class="label">→ 전략 요약</span>
-      <p>경쟁사들이 '더 많은 기능버튼'과 '더 큰 투명창'을 경쟁할 때, 태영전자는 <strong>'외관을 극도로 미니멀하게 정리하고, 보이지 않는 냄새를 잡는 엣지'</strong>를 주어야 7만 원대 가성비 시장에서 압도적인 브랜드 프리미엄(발뮤다 무드)을 획득할 수 있습니다.</p>
-    </div>
-  </div>
-  <div class="footer">
-    <div class="client">TAEYOUNG ELECTRONICS</div>
-    <div class="confidential">CONFIDENTIAL</div>
-    <div class="copyright">©<strong>found/Founded</strong>. All rights reserved.</div>
-  </div>
-</div>
-
-<!-- 11P: Form Strategy -->
-<div class="a4-page">
-  <div class="header">
-    <div class="title">PRODUCT RESEARCH REPORT</div>
-    <div class="page-num">11/14</div>
-  </div>
-  <div class="content">
-    <h1>6. 기회 요소 도출 및 전략 (Form & CMF)</h1>
-    <h2>Form Strategy: Vertical Slim Tower (수직형 폼팩터)</h2>
-    <p>가로 공간을 절약하기 위해 깊이(Depth)와 높이(Height)를 활용하는 '슬림 타워형' 외관을 제안합니다.</p>
-
-    <!-- Structural Infographic -->
-    <div style="margin-top: 30px; display: flex; gap: 20px; height: 300px;">
-      <!-- Diagram -->
-      <div style="flex: 1; background: #fff; border: 1px solid var(--border); border-radius: 12px; position: relative; display: flex; justify-content: center; align-items: center;">
-        
-        <div style="width: 120px; height: 220px; border: 3px solid var(--balmuda-dark); border-radius: 16px; position: relative; background: var(--balmuda-white);">
-          <!-- Dial -->
-          <div style="position: absolute; top: 30px; left: 50%; transform: translateX(-50%); width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--border); background: #fff; box-shadow: 0 4px 6px rgba(0,0,0,0.05);"></div>
-          <!-- Basket Partition line -->
-          <div style="position: absolute; top: 90px; left: 0; width: 100%; border-top: 2px solid var(--border);"></div>
-          <!-- Handle -->
-          <div style="position: absolute; top: 120px; left: 50%; transform: translateX(-50%); width: 60px; height: 10px; border-radius: 4px; background: var(--border);"></div>
-          
-          <!-- Vent Note -->
-          <div style="position: absolute; top: -15px; right: -80px; font-size: 12px; font-weight: 700; color: var(--primary);">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle;"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg> 후면 탈취 필터
+      <div class="row gap-24" style="margin-bottom: 40px;">
+        <div class="col card">
+          <div class="caption">국내 1인 가구 비율 (2024 추정)</div>
+          <div class="row" style="align-items: center; gap: 16px; margin: 16px 0;">
+            <div class="donut-chart"><div class="donut-inner"></div></div>
+            <div class="data-number" style="font-size: 40px; margin: 0;">35.6%</div>
           </div>
-          <!-- Width Note -->
-          <div style="position: absolute; bottom: -25px; left: 0; width: 100%; text-align: center; font-size: 12px; font-weight: 700;">W: 180mm (초슬림)</div>
+          <p style="font-size: 13px;">전체 가구 중 1인 가구가 차지하는 비중이 3분의 1을 돌파하며 소비 시장의 핵심 주체로 부상했습니다.</p>
+        </div>
+        <div class="col card">
+          <div class="caption">소형 에어프라이어 수요 증감율</div>
+          <div class="row" style="align-items: center; gap: 16px; margin: 16px 0;">
+            <div class="trend-box">
+              <div class="trend-arrow-up"></div>
+              <span style="color: var(--primary); font-weight: 800; font-size: 14px;">UP</span>
+            </div>
+            <div class="data-number" style="font-size: 40px; margin: 0;">+18%</div>
+          </div>
+          <p style="font-size: 13px;">대용량(5L 이상) 시장은 포화 상태이나, 1~2인용(2~3L) 교체 및 신규 수요는 지속 증가 중입니다.</p>
+        </div>
+      </div>
+
+      <div class="card" style="flex-grow: 1; padding-bottom: 50px;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+          <h2 style="margin: 0;">국내 1인 가구 증가 추이</h2>
+          <span style="font-size: 12px; font-weight: 600; color: var(--text-caption);">단위: %</span>
+        </div>
+        
+        <div class="chart-container">
+          <!-- Background Grid Lines -->
+          <div class="chart-grid">
+            <div class="chart-grid-line"></div>
+            <div class="chart-grid-line"></div>
+            <div class="chart-grid-line"></div>
+            <div class="chart-grid-line"></div>
+          </div>
+          
+          <!-- Infographic Bars -->
+          <div class="infographic-bar-wrap">
+            <div class="infographic-val">27.2</div>
+            <div class="infographic-bar" style="height: 40%;"></div>
+            <div class="infographic-label">2015</div>
+          </div>
+          <div class="infographic-bar-wrap">
+            <div class="infographic-val">30.2</div>
+            <div class="infographic-bar" style="height: 60%;"></div>
+            <div class="infographic-label">2019</div>
+          </div>
+          <div class="infographic-bar-wrap">
+            <div class="infographic-val">33.4</div>
+            <div class="infographic-bar" style="height: 80%;"></div>
+            <div class="infographic-label">2021</div>
+          </div>
+          <div class="infographic-bar-wrap active">
+            <div class="infographic-val">35.6%</div>
+            <div class="infographic-bar active" style="height: 100%;">
+              <div style="position: absolute; top: 6px; left: 50%; transform: translateX(-50%); width: 8px; height: 8px; background: rgba(255,255,255,0.9); border-radius: 50%;"></div>
+            </div>
+            <div class="infographic-label">2024(E)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="insight-box">
+        <strong>→ 핵심 디자인 인사이트</strong>
+        <p>에어프라이어의 구조를 '기름이 아래로 빠지는 복잡한 2중 바스켓'에서 <b>'닦기 쉬운 단일 구조(Seamless) 또는 유리/세라믹 소재의 팟(Pot)'</b>으로 혁신해야 합니다. 설거지라는 물리적 페인포인트를 해결하는 폼팩터가 핵심 무기입니다.</p>
+      </div>
+    </div>
+    <div class="page-footer">
+      <div class="footer-left">TAEYOUNG ELECTRONICS</div>
+      <div class="footer-center"><span class="badge">CONFIDENTIAL</span></div>
+      <div class="footer-right">©<span>found</span>/Founded. All rights reserved.</div>
+    </div>
+  </div>
+
+  <!-- 06P: Behavior Analysis -->
+  <div class="a4-page">
+    <div class="page-header">
+      <div class="header-left">PRODUCT RESEARCH REPORT</div>
+      <div class="header-right">06 / 14</div>
+    </div>
+    <div class="content">
+      <div class="content-title">
+        <h1>행동 분석: 전자레인지 vs<br>기존 에어프라이어 경험 비교</h1>
+        <p>가열 과정에서의 사용자 경험(UX) 및 허들 분석</p>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 20%;">비교 항목</th>
+            <th style="width: 40%; background: #4A5568;">전자레인지 (현재 주력)</th>
+            <th style="width: 40%;">기존 에어프라이어 (허들)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>조작성</strong></td>
+            <td>매우 직관적 (다이얼 하나로 시간 조절 끝)</td>
+            <td>온도 설정 + 시간 설정 (터치 패널 조작의 번거로움)</td>
+          </tr>
+          <tr>
+            <td><strong>조리 용기</strong></td>
+            <td>먹던 접시를 그대로 넣고 데운 후, <b>그대로 식사</b></td>
+            <td>바스켓에 넣고 조리 후, <b>접시에 다시 옮겨 담음</b></td>
+          </tr>
+          <tr>
+            <td><strong>세척 (Pain Point)</strong></td>
+            <td>접시 1개만 설거지하면 됨</td>
+            <td><b>접시 + 기름진 바스켓 + 그릴망 총 3개 설거지</b> (좁은 싱크대에서 최악의 경험)</td>
+          </tr>
+          <tr>
+            <td><strong>결과물 맛</strong></td>
+            <td>눅눅함, 식감 저하 (피자, 튀김류 등)</td>
+            <td><b>바삭함 (유일하고 강력한 베네핏)</b></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="row gap-24" style="margin-top: 32px;">
+        <div class="col card-blue">
+          <h2 style="font-size: 16px; margin-bottom: 8px;">결정적 기회 요소 (Opportunity)</h2>
+          <p style="font-size: 14px;">에어프라이어의 '맛(바삭함)'은 유지하면서, 조리 과정과 세척을 전자레인지 수준으로 단순화한다면 1인 가구 시장을 독식할 수 있습니다. <b>'조리 후 바스켓 채로 식탁에 올려놓고 먹을 수 있는'</b> 예쁜 그릇 형태의 조리 공간이 필요합니다.</p>
+        </div>
+      </div>
+
+      <div class="insight-box">
+        <strong>→ 핵심 디자인 인사이트</strong>
+        <p>제품 사용 후 설거지거리를 최소화하기 위해, 내부 바스켓 자체를 심미성 있는 내열 유리나 세라믹 코팅 볼(Bowl) 형태로 디자인하여 <b>'테이블웨어(Tableware)' 역할을 겸하도록 유도</b>해야 합니다.</p>
+      </div>
+    </div>
+    <div class="page-footer">
+      <div class="footer-left">TAEYOUNG ELECTRONICS</div>
+      <div class="footer-center"><span class="badge">CONFIDENTIAL</span></div>
+      <div class="footer-right">©<span>found</span>/Founded. All rights reserved.</div>
+    </div>
+  </div>
+
+  <!-- 07P: Competitor Analysis -->
+  <div class="a4-page">
+    <div class="page-header">
+      <div class="header-left">PRODUCT RESEARCH REPORT</div>
+      <div class="header-right">07 / 14</div>
+    </div>
+    <div class="content">
+      <div class="content-title">
+        <h1>폼팩터 경쟁사 분석:<br>개폐 방식에 따른 구조적 장단점</h1>
+        <p>시장에 존재하는 3가지 주요 형태와 1인 가구 적합성</p>
+      </div>
+
+      <div class="row gap-16" style="margin-bottom: 24px;">
+        <!-- Type 1: Drawer -->
+        <div class="col card">
+          <div class="wireframe-box">
+            <div class="wf-draw wf-drawer">
+              <div class="wf-drawer-split"></div>
+              <div class="wf-drawer-handle"></div>
+            </div>
+            <div class="caption" style="position: absolute; bottom: 10px;">전면 서랍형 (Drawer)</div>
+          </div>
+          <div style="margin-top: 16px;">
+            <strong style="display:block; margin-bottom: 8px;">가장 대중적인 스탠다드</strong>
+            <p style="font-size: 13px; color: var(--text-caption);">장점: 조작 익숙함, 용량 확보 용이<br>단점: 서랍을 뺄 때 앞쪽 공간 필요, 내부 코팅 벗겨짐, 이중 바스켓 세척 극상 난이도</p>
+          </div>
+        </div>
+        
+        <!-- Type 2: Oven -->
+        <div class="col card">
+          <div class="wireframe-box">
+            <div class="wf-draw wf-oven">
+              <div class="wf-oven-window">
+                <div class="wf-oven-handle"></div>
+              </div>
+            </div>
+            <div class="caption" style="position: absolute; bottom: 10px;">오븐형 (Oven / Rotisserie)</div>
+          </div>
+          <div style="margin-top: 16px;">
+            <strong style="display:block; margin-bottom: 8px;">다기능 프리미엄 (발뮤다 등)</strong>
+            <p style="font-size: 13px; color: var(--text-caption);">장점: 인테리어 효과 높음, 조리과정 보임<br>단점: 내부 벽면 기름때 세척 거의 불가능, 1인 가구에겐 오버스펙, 높은 가격대</p>
+          </div>
         </div>
 
+        <!-- Type 3: Top Open -->
+        <div class="col card" style="border: 2px solid var(--primary);">
+          <div class="wireframe-box">
+            <div class="wf-draw wf-topopen">
+              <div class="wf-topopen-lid">
+                <div class="wf-topopen-dial"></div>
+              </div>
+            </div>
+            <div class="caption" style="position: absolute; bottom: 10px;">상단 개폐/바스켓 일체형</div>
+          </div>
+          <div style="margin-top: 16px;">
+            <strong style="display:block; margin-bottom: 8px; color: var(--primary);">1인 가구 최적화 폼팩터</strong>
+            <p style="font-size: 13px; color: var(--text-caption);">장점: 냄비처럼 씻기 쉬운 단일 통 구조, 상단 조작으로 직관성 확보<br>단점: 뚜껑 놓을 공간 필요 (힌지 설계로 극복 가능)</p>
+          </div>
+        </div>
       </div>
-      
-      <!-- Descriptions -->
-      <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 16px;">
-        <div style="padding-bottom: 12px; border-bottom: 1px solid var(--border);">
-          <h3 style="font-size: 15px;">1. 초슬림 가로폭 (Max 180mm)</h3>
-          <p style="font-size: 13px; color: var(--text-caption);">일반적인 A4 용지 너비보다 좁게 설계하여 전자레인지 옆 틈새 공간에 수납 가능하도록 설계.</p>
+
+      <div class="insight-box">
+        <strong>→ 핵심 디자인 인사이트</strong>
+        <p>전면으로 당기는 서랍형은 세척이 힘들고, 오븐형은 부피가 큽니다. 태영전자는 위에서 뚜껑을 여는 <b>'상단 개폐형(Top-open)' 또는 밥솥과 같은 '원형 바스켓 일체형' 구조</b>를 채택하여, 조리 통 전체를 냄비처럼 쉽게 빼서 씻을 수 있는 구조적 차별화를 가져가야 합니다.</p>
+      </div>
+    </div>
+    <div class="page-footer">
+      <div class="footer-left">TAEYOUNG ELECTRONICS</div>
+      <div class="footer-center"><span class="badge">CONFIDENTIAL</span></div>
+      <div class="footer-right">©<span>found</span>/Founded. All rights reserved.</div>
+    </div>
+  </div>
+
+  <!-- 08P: Positioning Map -->
+  <div class="a4-page">
+    <div class="page-header">
+      <div class="header-left">PRODUCT RESEARCH REPORT</div>
+      <div class="header-right">08 / 14</div>
+    </div>
+    <div class="content">
+      <div class="content-title">
+        <h1>디자인 경쟁사 포지셔닝</h1>
+        <p>기존 시장의 공백과 태영전자(가칭)의 전략적 위치</p>
+      </div>
+
+      <div class="pos-map-container">
+        <!-- Axes -->
+        <div class="pos-axis-x"></div>
+        <div class="pos-axis-y"></div>
+        <div class="pos-label top">Minimal / Interior Friendly (고감도 디자인)</div>
+        <div class="pos-label bottom">Utilitarian / Appliance (기계적인 디자인)</div>
+        <div class="pos-label left">Low Price (가성비)</div>
+        <div class="pos-label right">High Price (프리미엄)</div>
+
+        <!-- Nodes -->
+        <div class="pos-node" style="top: 20%; left: 85%;">
+          <div class="pos-dot"></div>
+          <div class="pos-text">발뮤다 토스터/오븐<span>20~30만 원대</span></div>
         </div>
-        <div style="padding-bottom: 12px; border-bottom: 1px solid var(--border);">
-          <h3 style="font-size: 15px;">2. Seamless Front Panel</h3>
-          <p style="font-size: 13px; color: var(--text-caption);">바스켓의 분할선(Parting line)을 측면으로 숨기고 전면은 하나의 깔끔한 면으로 처리하여 가구적 느낌 강조.</p>
+        <div class="pos-node" style="top: 40%; left: 75%;">
+          <div class="pos-dot"></div>
+          <div class="pos-text">오브제/비스포크 소형<span>15만 원대</span></div>
         </div>
-        <div>
-          <h3 style="font-size: 15px;">3. Hidden Vent (상단/후면 배기)</h3>
-          <p style="font-size: 13px; color: var(--text-caption);">기계적인 타공망을 시야에서 완전히 숨기고, 활성탄 필터 카트리지를 후면 하단에 보이지 않게 결합.</p>
+        <div class="pos-node" style="top: 85%; left: 20%;">
+          <div class="pos-dot"></div>
+          <div class="pos-text">중저가 서랍형 (A사, B사)<span>3~5만 원대</span></div>
+        </div>
+        <div class="pos-node" style="top: 70%; left: 60%;">
+          <div class="pos-dot"></div>
+          <div class="pos-text">대용량 다기능 오븐형<span>10~15만 원대</span></div>
+        </div>
+        <div class="pos-node" style="top: 60%; left: 30%;">
+          <div class="pos-dot"></div>
+          <div class="pos-text">파스텔톤/레트로 에프<span>6~8만 원대</span></div>
+        </div>
+
+        <!-- Target Position -->
+        <div class="pos-node target" style="top: 25%; left: 25%;">
+          <div class="pos-dot"></div>
+          <div class="pos-text" style="color: var(--primary); font-size: 14px;">태영전자 미니멀 에프<span>7만 원대 / 무광 / 원다이얼</span></div>
+        </div>
+      </div>
+
+      <div class="insight-box">
+        <strong>→ 핵심 디자인 인사이트</strong>
+        <p>현재 시장은 '비싸고 예쁜 제품'과 '싸고 투박한(혹은 유치한) 제품'으로 양극화되어 있습니다. 태영전자는 <b>좌측 상단 사분면(가성비 + 극도의 미니멀리즘)</b>을 선점해야 합니다. 이를 위해 값비싼 디스플레이 패널을 제거하고 금형 비용을 최소화하는 대신 외관 텍스처(CMF)에 투자해야 합니다.</p>
+      </div>
+    </div>
+    <div class="page-footer">
+      <div class="footer-left">TAEYOUNG ELECTRONICS</div>
+      <div class="footer-center"><span class="badge">CONFIDENTIAL</span></div>
+      <div class="footer-right">©<span>found</span>/Founded. All rights reserved.</div>
+    </div>
+  </div>
+
+  <!-- 09P: Persona Details -->
+  <div class="a4-page">
+    <div class="page-header">
+      <div class="header-left">PRODUCT RESEARCH REPORT</div>
+      <div class="header-right">09 / 14</div>
+    </div>
+    <div class="content">
+      <div class="content-title">
+        <h1>유저 페르소나 (Persona)</h1>
+        <p>타겟 사용자의 라이프스타일과 공간적 한계 구체화</p>
+      </div>
+
+      <div class="card gap-24" style="display: flex; align-items: stretch; margin-bottom: 24px; padding: 0;">
+        <div style="width: 120px; background: var(--text-main); display: flex; align-items: center; justify-content: center; border-radius: 11px 0 0 11px;">
+          <!-- SVG Icon for Persona -->
+          <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+            <circle cx="12" cy="7" r="4"></circle>
+            <path d="M5.5 21v-2a4.5 4.5 0 0 1 4.5-4.5h4a4.5 4.5 0 0 1 4.5 4.5v2"></path>
+          </svg>
+        </div>
+        <div style="padding: 32px 24px; flex-grow: 1;">
+          <h2 style="font-size: 24px; margin-bottom: 8px;">"예쁜 공간에 살고 싶지만, 설거지는 귀찮은 취준생"</h2>
+          <div class="row" style="margin-bottom: 16px; font-size: 14px; font-weight: 600; color: var(--text-caption);">
+            <span>#1인가구</span> <span>#데스크테리어</span> <span>#가성비</span> <span>#간편식</span>
+          </div>
+          <p style="font-size: 14px; line-height: 1.6;">
+            보증금 1000에 월세 50만 원짜리 오픈형 원룸에 거주. 주방과 침실이 분리되지 않아 주방에 놓인 가전이 방 안의 인테리어에 직접적인 영향을 미칩니다. 친구들이 집에 놀러 올 때 예뻐 보이는 '오늘의집' 감성을 선호하지만, 경제적 여유는 많지 않아 가성비를 꼼꼼히 따집니다.
+          </p>
+        </div>
+      </div>
+
+      <div class="row gap-16">
+        <div class="col card">
+          <strong style="color: var(--primary); display: block; margin-bottom: 12px;">공간 제약 (Space)</strong>
+          <ul style="font-size: 13px; color: var(--text-main); line-height: 1.8; padding-left: 16px;">
+            <li>싱크대 조리 공간이 도마 하나 올리면 끝날 정도로 협소함</li>
+            <li>건조대가 작아 큰 냄비나 바스켓을 씻어 말릴 공간이 없음</li>
+            <li>에어프라이어는 전자레인지 위나 작은 선반에 간신히 올려둠</li>
+          </ul>
+        </div>
+        <div class="col card">
+          <strong style="color: var(--primary); display: block; margin-bottom: 12px;">행동 특성 (Behavior)</strong>
+          <ul style="font-size: 13px; color: var(--text-main); line-height: 1.8; padding-left: 16px;">
+            <li>요리보단 조립(냉동식품 데우기, 밀키트)에 가까운 식생활</li>
+            <li>설거지거리를 줄이기 위해 냄비나 용기 채로 식사하는 편</li>
+            <li>가전 설명서를 읽지 않음 (직관적 조작 선호)</li>
+          </ul>
         </div>
       </div>
     </div>
+    <div class="page-footer">
+      <div class="footer-left">TAEYOUNG ELECTRONICS</div>
+      <div class="footer-center"><span class="badge">CONFIDENTIAL</span></div>
+      <div class="footer-right">©<span>found</span>/Founded. All rights reserved.</div>
+    </div>
   </div>
-  <div class="footer">
-    <div class="client">TAEYOUNG ELECTRONICS</div>
-    <div class="confidential">CONFIDENTIAL</div>
-    <div class="copyright">©<strong>found/Founded</strong>. All rights reserved.</div>
-  </div>
-</div>
 
-<!-- 12P: CMF Strategy -->
-<div class="a4-page">
-  <div class="header">
-    <div class="title">PRODUCT RESEARCH REPORT</div>
-    <div class="page-num">12/14</div>
-  </div>
-  <div class="content">
-    <h1>6. 기회 요소 도출 및 전략 (Form & CMF)</h1>
-    <h2>CMF (Color, Material, Finish) Strategy</h2>
-    <p>가성비(7만원대)의 한계를 극복하고 발뮤다 감성을 구현하기 위해, 텍스처(Finish)와 색상(Color) 튜닝에 집중합니다.</p>
+  <!-- 10P: Journey Map -->
+  <div class="a4-page">
+    <div class="page-header">
+      <div class="header-left">PRODUCT RESEARCH REPORT</div>
+      <div class="header-right">10 / 14</div>
+    </div>
+    <div class="content">
+      <div class="content-title">
+        <h1>유저 저니맵 (User Journey)</h1>
+        <p>냉동 치킨 조리 과정을 통한 Pain Point 시각화</p>
+      </div>
 
-    <div class="grid-3" style="margin-top: 30px;">
-      <!-- Color -->
-      <div class="card">
-        <h3 style="font-size: 15px;">Color (색상)</h3>
-        <div style="display: flex; gap: 10px; margin-top: 12px;">
-          <div style="width: 30px; height: 30px; border-radius: 50%; background: #F4F4F0; border: 1px solid var(--border);"></div>
-          <div style="width: 30px; height: 30px; border-radius: 50%; background: #E6E2D8; border: 1px solid var(--border);"></div>
-          <div style="width: 30px; height: 30px; border-radius: 50%; background: #333333; border: 1px solid var(--border);"></div>
+      <div class="journey-map">
+        <div class="jm-bg-line"></div>
+        
+        <div class="jm-step">
+          <div class="jm-bubble">"냉동 치킨 바삭하게 먹고 싶네"</div>
+          <div class="jm-v-line"></div>
+          <div class="jm-node"></div>
+          <div class="jm-label">1. 준비/투입</div>
+          <div class="jm-desc">서랍을 열고 종이호일을<br>깔고 치킨을 넣음</div>
         </div>
-        <ul style="font-size: 12px; margin-top: 16px; padding-left: 16px; line-height: 1.6;">
-          <li>완전한 백색(Pure White) 금지</li>
-          <li>공간에 녹아드는 <b>Warm Greige</b> (웜 그레이지) 주력</li>
-          <li>포인트로 <b>Matte Charcoal</b> (무광 차콜) 운영</li>
+
+        <div class="jm-step">
+          <div class="jm-bubble">"몇 도에 몇 분 돌려야 하지?"</div>
+          <div class="jm-v-line"></div>
+          <div class="jm-node"></div>
+          <div class="jm-label">2. 조작 설정</div>
+          <div class="jm-desc">터치 패널을 여러 번<br>눌러 온도와 시간을 맞춤</div>
+        </div>
+
+        <div class="jm-step" style="transform: translateY(-20px);">
+          <div class="jm-bubble" style="border-color: var(--primary); color: var(--primary);">"역시 에프가 맛은 최고야"</div>
+          <div class="jm-v-line"></div>
+          <div class="jm-node" style="background: var(--primary); border-color: var(--primary);"></div>
+          <div class="jm-label">3. 식사 (Peak)</div>
+          <div class="jm-desc">접시에 덜어내어<br>바삭한 치킨을 즐김</div>
+        </div>
+
+        <div class="jm-step" style="transform: translateY(40px);">
+          <div class="jm-bubble" style="border-color: #E53E3E; color: #E53E3E; background: #FFF5F5;">"기름때... 언제 다 씻지..."</div>
+          <div class="jm-v-line" style="border-color: #E53E3E;"></div>
+          <div class="jm-node pain"></div>
+          <div class="jm-label" style="color: #E53E3E;">4. 세척 (Dip)</div>
+          <div class="jm-desc">기름 묻은 거대 바스켓과<br>접시를 좁은 곳에서 씻음</div>
+        </div>
+      </div>
+
+      <div class="card-blue" style="margin-top: 20px;">
+        <h2 style="font-size: 16px; margin-bottom: 8px;">저니맵 인사이트: 감정의 낙차 줄이기</h2>
+        <p style="font-size: 14px;">식사 시점의 만족도(Peak)가 높음에도 불구하고, 직후에 이어지는 세척 단계의 불만족(Dip)이 너무 깊어 다음 사용을 주저하게 만듭니다. 디자인 기회는 <b>'2번 조작 단계의 간소화'</b>와 <b>'4번 세척 단계의 고통 제거'</b>에 있습니다.</p>
+      </div>
+    </div>
+    <div class="page-footer">
+      <div class="footer-left">TAEYOUNG ELECTRONICS</div>
+      <div class="footer-center"><span class="badge">CONFIDENTIAL</span></div>
+      <div class="footer-right">©<span>found</span>/Founded. All rights reserved.</div>
+    </div>
+  </div>
+
+  <!-- 11P: Form Factor Strategy -->
+  <div class="a4-page">
+    <div class="page-header">
+      <div class="header-left">PRODUCT RESEARCH REPORT</div>
+      <div class="header-right">11 / 14</div>
+    </div>
+    <div class="content">
+      <div class="content-title">
+        <h1>디자인 기회 요소: Form (형태)</h1>
+        <p>구조적 혁신: 바스켓이 곧 예쁜 그릇이 되는 형태</p>
+      </div>
+
+      <div class="row gap-24">
+        <div class="col" style="flex: 1;">
+          <div class="wireframe-box" style="height: 300px; background: var(--white); border-color: var(--primary);">
+            <!-- CSS Drawing of Proposed Concept -->
+            <div style="position: relative; width: 140px; height: 180px;">
+              <!-- Main Body -->
+              <div style="position: absolute; bottom: 0; width: 140px; height: 120px; border: 3px solid var(--primary); border-radius: 24px; background: #FAFAFA;"></div>
+              <!-- Inner Bowl (Pulled out slightly) -->
+              <div style="position: absolute; bottom: 40px; left: 10px; width: 120px; height: 100px; border: 2px dashed var(--primary); border-radius: 16px; background: rgba(0,85,255,0.05); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: var(--primary);">Glass/Ceramic Bowl</div>
+              <!-- Lid / Top UI -->
+              <div style="position: absolute; top: 0; width: 140px; height: 40px; border: 3px solid var(--primary); border-radius: 20px 20px 0 0; background: var(--white); display: flex; justify-content: center; align-items: center;">
+                <div style="width: 30px; height: 30px; border: 2px solid var(--primary); border-radius: 50%;"></div>
+              </div>
+            </div>
+            <!-- Arrow -->
+            <div style="position: absolute; right: 20px; top: 50%; color: var(--primary); font-weight: 800;">→ 분리 가능</div>
+          </div>
+        </div>
+        
+        <div class="col gap-16" style="flex: 1.2;">
+          <div class="card">
+            <h2 style="font-size: 16px; margin-bottom: 8px;">1. 심리스 원볼(One-Bowl) 구조</h2>
+            <p style="font-size: 13px;">기존의 구멍 뚫린 그릴망과 외부 바스켓의 2중 구조를 버립니다. 내열 유리나 세라믹 코팅이 적용된 단일 볼(Bowl) 형태로 디자인하여, 요리 후 볼만 쏙 빼서 식탁에 올려 그릇처럼 사용하게 합니다. 설거지는 그릇 하나 씻는 것으로 끝납니다.</p>
+          </div>
+          <div class="card">
+            <h2 style="font-size: 16px; margin-bottom: 8px;">2. 상단 개폐 또는 캡슐형 결합</h2>
+            <p style="font-size: 13px;">히터와 팬이 있는 열원부(뚜껑)와 하단 조리부(그릇)가 위아래로 결합되는 캡슐형 디자인을 제안합니다. 이는 좁은 공간에서 서랍을 앞뒤로 당길 필요 없이 콤팩트한 원통형 실루엣을 만들어냅니다.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="insight-box">
+        <strong>→ 핵심 디자인 인사이트</strong>
+        <p><b>"가전제품이 아닌, 뚜껑 덮인 예쁜 그릇"</b>처럼 보여야 합니다. 각진 사각형보다 원통형이나 모서리가 둥근 실루엣(Rounded Cylinder)을 채택하여 주방뿐만 아니라 테이블 위에서도 어색하지 않은 오브제 형태를 취해야 합니다.</p>
+      </div>
+    </div>
+    <div class="page-footer">
+      <div class="footer-left">TAEYOUNG ELECTRONICS</div>
+      <div class="footer-center"><span class="badge">CONFIDENTIAL</span></div>
+      <div class="footer-right">©<span>found</span>/Founded. All rights reserved.</div>
+    </div>
+  </div>
+
+  <!-- 12P: CMF Strategy -->
+  <div class="a4-page">
+    <div class="page-header">
+      <div class="header-left">PRODUCT RESEARCH REPORT</div>
+      <div class="header-right">12 / 14</div>
+    </div>
+    <div class="content">
+      <div class="content-title">
+        <h1>디자인 기회 요소: CMF (소재/컬러)</h1>
+        <p>발뮤다 톤앤매너의 가성비 구현: 텍스처와 뉴트럴 컬러</p>
+      </div>
+
+      <div class="row gap-24" style="margin-bottom: 24px;">
+        <div class="col gap-16">
+          <div class="card" style="display: flex; gap: 16px; align-items: center; padding: 16px;">
+            <div style="width: 60px; height: 60px; background: #F8F9FA; border: 1px solid #E2E8F0; border-radius: 50%; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);"></div>
+            <div>
+              <strong style="display: block; font-size: 14px;">Matte Off-White (무광 오프화이트)</strong>
+              <span style="font-size: 12px; color: var(--text-caption);">메인 바디 컬러. 완전한 백색보다 웜톤.</span>
+            </div>
+          </div>
+          <div class="card" style="display: flex; gap: 16px; align-items: center; padding: 16px;">
+            <div style="width: 60px; height: 60px; background: #E2E0D9; border: 1px solid #CBD5E0; border-radius: 50%; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);"></div>
+            <div>
+              <strong style="display: block; font-size: 14px;">Oatmeal Beige (오트밀 베이지)</strong>
+              <span style="font-size: 12px; color: var(--text-caption);">우드 톤 인테리어와 조화되는 서브 컬러.</span>
+            </div>
+          </div>
+          <div class="card" style="display: flex; gap: 16px; align-items: center; padding: 16px;">
+            <div style="width: 60px; height: 60px; background: #2D3748; border: 1px solid #1A202C; border-radius: 50%; box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);"></div>
+            <div>
+              <strong style="display: block; font-size: 14px;">Charcoal Black (차콜 블랙)</strong>
+              <span style="font-size: 12px; color: var(--text-caption);">모던 데스크테리어 선호 남성 타겟.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col card">
+          <h2 style="font-size: 16px; border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 16px;">CMF 절대 원칙 (Do & Don't)</h2>
+          <ul style="font-size: 14px; line-height: 2; padding-left: 20px;">
+            <li><b>[Don't] 광택(Glossy) 플라스틱 금지:</b> 저렴한 가전 느낌을 주는 가장 큰 원인.</li>
+            <li><b>[Don't] 비비드 컬러(Yellow, Pink 등) 배제:</b> 장난감 같은 발랄한 느낌은 타겟이 기피하는 요소.</li>
+            <li><b>[Do] 매트 텍스처(Matte Finish):</b> 금형 부식 처리를 통해 도장(Painting) 공정 없이도 무광 질감을 구현하여 단가 절감 및 고급감 동시 확보.</li>
+            <li><b>[Do] 크롬/메탈릭 포인트 최소화:</b> 버튼이나 로고에 들어가는 반짝이는 크롬 부품을 삭제하고, 바디와 동일한 톤으로 톤온톤(Tone-on-Tone) 매치.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="insight-box">
+        <strong>→ 핵심 디자인 인사이트</strong>
+        <p>7만 원대 가성비를 맞추기 위해 값비싼 메탈이나 도장 공정을 쓸 수는 없습니다. 대신 플라스틱 <b>사출 자체를 완전 무광(Matte)으로 처리하고 부품의 파팅 라인(틈새)을 최소화</b>하는 설계로, 덩어리감이 강조된 미니멀 오브제 감성을 극대화해야 합니다.</p>
+      </div>
+    </div>
+    <div class="page-footer">
+      <div class="footer-left">TAEYOUNG ELECTRONICS</div>
+      <div class="footer-center"><span class="badge">CONFIDENTIAL</span></div>
+      <div class="footer-right">©<span>found</span>/Founded. All rights reserved.</div>
+    </div>
+  </div>
+
+  <!-- 13P: UX Strategy -->
+  <div class="a4-page">
+    <div class="page-header">
+      <div class="header-left">PRODUCT RESEARCH REPORT</div>
+      <div class="header-right">13 / 14</div>
+    </div>
+    <div class="content">
+      <div class="content-title">
+        <h1>디자인 기회 요소: UX (조작/인터랙션)</h1>
+        <p>전자레인지급 직관성: 원 다이얼(One-Dial)과 히든 디스플레이</p>
+      </div>
+
+      <div class="row gap-24">
+        <div class="col card" style="background: #1A202C; color: white; border: none; align-items: center; justify-content: center; padding: 40px;">
+          <!-- UI Wireframe -->
+          <div style="position: relative; width: 120px; height: 120px; display: flex; align-items: center; justify-content: center;">
+            <div style="position: absolute; width: 100px; height: 100px; border: 4px solid #4A5568; border-radius: 50%;"></div>
+            <div style="position: absolute; top: -10px; width: 4px; height: 20px; background: white; border-radius: 2px;"></div>
+            <div style="font-size: 24px; font-weight: 800; color: white;">15<span style="font-size: 14px;">min</span></div>
+          </div>
+          <p style="margin-top: 32px; font-size: 14px; color: #A0AEC0; text-align: center;">돌려서 시간 설정, 누르면 시작 (Simple is Best)</p>
+        </div>
+
+        <div class="col gap-16">
+          <div class="card">
+            <h2 style="font-size: 16px; margin-bottom: 8px;">1. 버튼 삭제, 다이얼 통합</h2>
+            <p style="font-size: 13px;">복잡한 터치 패널(온도, 시간, 메뉴, 전원 버튼 등)은 생산 단가를 높이고 디자인을 해칩니다. 냉동식품 에어프라이어 조리는 보통 180~200도로 고정되어 있습니다. 온도는 기본 190도로 고정(또는 후면 아날로그 스위치 배치)하고, <b>전면에는 '시간 조절 다이얼' 단 1개만 배치</b>합니다.</p>
+          </div>
+          <div class="card">
+            <h2 style="font-size: 16px; margin-bottom: 8px;">2. 히든(Hidden) 디스플레이</h2>
+            <p style="font-size: 13px;">작동하지 않을 때는 까만 화면이나 숫자가 보이지 않고 완벽한 플라스틱 바디처럼 보이다가, 다이얼을 돌리면 플라스틱 하우징 안쪽에서 화이트 LED로 남은 시간이 은은하게 비쳐보이도록 설계합니다. (단가 대비 감성 품질 극대화 기법)</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="insight-box">
+        <strong>→ 핵심 디자인 인사이트</strong>
+        <p>조작부 텍스트 프린팅(치킨 기호, 피자 기호 등)을 기기 외관에 절대 인쇄하지 마십시오. 미니멀리즘을 파괴합니다. <b>'돌리고 누른다'라는 직관적 행동 하나에 모든 UI를 집중</b>시켜 전자레인지를 완벽하게 대체하는 경험을 제공해야 합니다.</p>
+      </div>
+    </div>
+    <div class="page-footer">
+      <div class="footer-left">TAEYOUNG ELECTRONICS</div>
+      <div class="footer-center"><span class="badge">CONFIDENTIAL</span></div>
+      <div class="footer-right">©<span>found</span>/Founded. All rights reserved.</div>
+    </div>
+  </div>
+
+  <!-- 14P: Appendix -->
+  <div class="a4-page">
+    <div class="page-header">
+      <div class="header-left">PRODUCT RESEARCH REPORT</div>
+      <div class="header-right">14 / 14</div>
+    </div>
+    <div class="content">
+      <div class="content-title">
+        <h1>Appendix: Data Sources</h1>
+        <p>본 보고서 작성을 위해 교차 검증된 데이터 출처 목록</p>
+      </div>
+
+      <div style="flex-grow: 1; margin-top: 20px;">
+        <h2 style="font-size: 15px; color: var(--primary); margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">인구 통계 및 가구 구조 데이터</h2>
+        <ul style="font-size: 13px; line-height: 2; color: var(--text-caption); padding-left: 20px; margin-bottom: 32px;">
+          <li>통계청(KOSIS), 장래가구추계 (시도/가구주 연령/가구유형), 2023-2024</li>
+          <li>통계청, 인구주택총조사 전수부문 결과 (1인 가구 비중), 2023</li>
+          <li>KB금융지주 경영연구소, 한국 1인가구 보고서, 2023</li>
+        </ul>
+
+        <h2 style="font-size: 15px; color: var(--primary); margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">소비자 라이프스타일 및 주방 가전 사용 행태</h2>
+        <ul style="font-size: 13px; line-height: 2; color: var(--text-caption); padding-left: 20px; margin-bottom: 32px;">
+          <li>오픈서베이(OpenSurvey), 주방 가전 트렌드 리포트, 2023</li>
+          <li>대학내일20대연구소, MZ세대 식생활 및 조리 행태 조사, 2023</li>
+          <li>노써치(Nosearch), 에어프라이어 구매 가이드 및 소비자 불만 요인 분석, 2024</li>
+          <li>한국갤럽, 라이프스타일 및 인테리어 트렌드 여론조사 (2030 대상), 2023</li>
+        </ul>
+
+        <h2 style="font-size: 15px; color: var(--primary); margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">산업 및 제품 트렌드 분석</h2>
+        <ul style="font-size: 13px; line-height: 2; color: var(--text-caption); padding-left: 20px;">
+          <li>다나와 리서치, 소형 가전/에어프라이어 용량별 판매 점유율, 2024</li>
+          <li>네이버 데이터랩, '원룸 인테리어', '소형 에어프라이어' 검색어 동향 분석, 2023-2024</li>
+          <li>월간 디자인, CMF(Color, Material, Finish) 트렌드 리포트: 가전의 가구화, 2024</li>
         </ul>
       </div>
 
-      <!-- Material -->
-      <div class="card">
-        <h3 style="font-size: 15px;">Material (소재)</h3>
-        <div style="height: 30px; margin-top: 12px; font-size: 13px; font-weight: 700; color: var(--primary);">Injection Plastic (PC/ABS)</div>
-        <ul style="font-size: 12px; margin-top: 16px; padding-left: 16px; line-height: 1.6;">
-          <li>메탈 도장 비용을 절감하는 대신, <b>플라스틱 사출 자체의 품질</b>에 집중</li>
-          <li>내부 바스켓은 세라믹 코팅 적용 (테플론 대비 유해물질 우려 감소 마케팅)</li>
-        </ul>
-      </div>
-
-      <!-- Finish -->
-      <div class="card">
-        <h3 style="font-size: 15px;">Finish (표면 처리)</h3>
-        <div style="height: 30px; margin-top: 12px; font-size: 13px; font-weight: 700; color: var(--primary);">Matte & Fine Texture</div>
-        <ul style="font-size: 12px; margin-top: 16px; padding-left: 16px; line-height: 1.6;">
-          <li>모든 외부 면에 <b>100% 무광(Matte)</b> 부식 처리</li>
-          <li>지문이 묻지 않는 고운 샌드 텍스처 (Sand-blasted effect)</li>
-          <li>싸구려 유광(Glossy) 플라스틱 느낌 완벽 배제</li>
-        </ul>
+      <div class="insight-box" style="border-left-color: var(--text-caption); background: var(--bg-color);">
+        <p style="font-size: 13px; color: var(--text-caption);">* 본 보고서의 수치 및 소비자 행태 데이터는 공식 통계 기관 및 공신력 있는 리서치 업체의 발행 자료를 바탕으로 재가공/도출되었습니다.</p>
       </div>
     </div>
-
-    <div class="insight-box">
-      <span class="label">→ 비용 절감(Cost Reduction) 디자인</span>
-      <p>저가형 제품일수록 파팅 라인(부품이 만나는 선)이 많으면 조잡해 보입니다. <strong>아우터 쉘(Outer Shell)을 하나의 통사출 부품으로 덮어씌우는 구조</strong>를 채택하여 조립 단차를 없애고 심플한 덩어리감을 극대화해야 합니다.</p>
+    <div class="page-footer">
+      <div class="footer-left">TAEYOUNG ELECTRONICS</div>
+      <div class="footer-center"><span class="badge">CONFIDENTIAL</span></div>
+      <div class="footer-right">©<span>found</span>/Founded. All rights reserved.</div>
     </div>
   </div>
-  <div class="footer">
-    <div class="client">TAEYOUNG ELECTRONICS</div>
-    <div class="confidential">CONFIDENTIAL</div>
-    <div class="copyright">©<strong>found/Founded</strong>. All rights reserved.</div>
-  </div>
-</div>
-
-<!-- 13P: UX Strategy -->
-<div class="a4-page">
-  <div class="header">
-    <div class="title">PRODUCT RESEARCH REPORT</div>
-    <div class="page-num">13/14</div>
-  </div>
-  <div class="content">
-    <h1>6. 기회 요소 도출 및 전략 (UX & Interaction)</h1>
-    <h2>아날로그 감성을 입힌 직관적 조작</h2>
-    <p>가성비 제품의 복잡한 디지털 디스플레이는 고장률을 높이고 심미성을 떨어뜨립니다. 다이얼 하나로 아날로그 감성을 줍니다.</p>
-
-    <div style="border: 2px dashed var(--border); border-radius: 12px; padding: 30px; margin-top: 30px; background: #fff; display: flex; align-items: center; gap: 40px;">
-      
-      <!-- Dial UI Wireframe -->
-      <div style="width: 140px; height: 140px; border-radius: 50%; background: var(--bg-main); border: 1px solid var(--border); position: relative; display: flex; justify-content: center; align-items: center; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);">
-        <!-- Indicator dot -->
-        <div style="position: absolute; top: 20px; left: 50%; transform: translateX(-50%); width: 6px; height: 6px; border-radius: 50%; background: var(--primary);"></div>
-        <!-- Inner Button -->
-        <div style="width: 80px; height: 80px; border-radius: 50%; background: #fff; border: 1px solid var(--border); display: flex; justify-content: center; align-items: center; font-size: 11px; font-weight: 700; color: var(--text-caption); box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-          PUSH<br>TO START
-        </div>
-      </div>
-
-      <div style="flex: 1;">
-        <h3 style="margin-bottom: 12px;">The 'Smart Dial' UX</h3>
-        <ul style="font-size: 14px; line-height: 1.8; color: var(--text-main);">
-          <li><strong>조작:</strong> 좌우로 돌려 시간(Time) 조절. (온도는 180도 고정 또는 2단계 프리셋 버튼만 후면에 배치하여 UI 극단적 단순화)</li>
-          <li><strong>실행:</strong> 다이얼 중앙을 물리적으로 '딸깍(Click)' 누르면 작동 시작. 아날로그적인 타격감 제공.</li>
-          <li><strong>피드백:</strong> 작동 중에는 다이얼 안쪽 틈새로 은은한 숨쉬기 조명(Breathing LED) 점등. '요리 중'이라는 감성적 시그널 전달.</li>
-          <li><strong>사운드:</strong> "띠-띠-띠"하는 전자음 대신, 기계식 타이머가 끝날 때 나는 "땡-" 하는 맑은 종소리 1회 탑재 (발뮤다 오븐 벤치마킹).</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="insight-box">
-      <span class="label">→ 핵심 디자인 인사이트</span>
-      <p>1인가구의 냉동식품 조리는 대부분 '180도에 15분'이라는 공식을 따릅니다. 무의미한 온도 조절계를 숨기거나 고정하고, <strong>오직 '시간'만 다이얼로 직관적으로 돌리게 만드는 것</strong>이 사용성을 높이고 원가를 절감하며 미니멀 디자인을 완성하는 핵심 전략입니다.</p>
-    </div>
-  </div>
-  <div class="footer">
-    <div class="client">TAEYOUNG ELECTRONICS</div>
-    <div class="confidential">CONFIDENTIAL</div>
-    <div class="copyright">©<strong>found/Founded</strong>. All rights reserved.</div>
-  </div>
-</div>
-
-<!-- 14P: Appendix -->
-<div class="a4-page">
-  <div class="header">
-    <div class="title">PRODUCT RESEARCH REPORT</div>
-    <div class="page-num">14/14</div>
-  </div>
-  <div class="content">
-    <h1>7. Appendix (Data Sources)</h1>
-    <h2>본 보고서의 데이터 출처 및 참고 문헌</h2>
-    <p style="margin-bottom: 30px; font-size: 14px; color: var(--text-caption);">본 보고서는 신뢰할 수 있는 공공 기관 통계 및 시장 조사 기관의 최신 리포트를 기반으로 작성되었습니다.</p>
-
-    <div style="font-size: 13px; line-height: 2; color: var(--text-main);">
-      <h3 style="font-size: 15px; margin-top: 20px; color: var(--primary);">Demographics & Market Size (인구 및 시장 데이터)</h3>
-      <ul style="padding-left: 20px; list-style-type: square; margin-bottom: 20px;">
-        <li>통계청(KOSIS), '2023년 하반기 지역별고용조사 - 1인가구 취업 및 주거 특성', 2024년.</li>
-        <li>통계청(KOSIS), '장래가구추계: 2022~2052년 (1인가구 비중 전망)', 2024년.</li>
-        <li>유로모니터 인터내셔널, '한국 소형 가전 시장 동향 리포트', 2023년.</li>
-      </ul>
-
-      <h3 style="font-size: 15px; margin-top: 20px; color: var(--primary);">Consumer Behavior & Trends (소비자 행동 및 트렌드)</h3>
-      <ul style="padding-left: 20px; list-style-type: square; margin-bottom: 20px;">
-        <li>오픈서베이, '가전제품 트렌드 리포트 2023 (1-2인가구 중심)', 2023년.</li>
-        <li>대학내일20대연구소, 'MZ세대 식생활 및 간편식 소비 트렌드 보고서', 2023년.</li>
-        <li>한국갤럽, '주방 소형가전 보유 및 사용 실태 여론조사', 2023년.</li>
-        <li>트렌드코리아 2024 (김난도 외), '공간력(Space)과 디토소비(Ditto)', 2023년.</li>
-      </ul>
-
-      <h3 style="font-size: 15px; margin-top: 20px; color: var(--primary);">Product Quality & Usability (제품 품질 및 사용성)</h3>
-      <ul style="padding-left: 20px; list-style-type: square;">
-        <li>한국소비자원, '에어프라이어 품질 비교 및 소비자 불만 사례 분석', 2022년.</li>
-        <li>노써치(Nosearch), '에어프라이어 구매 가이드 및 소비자 리뷰 데이터 분석', 2023년.</li>
-        <li>판다랭크, '소형 주방가전 검색어 및 쇼핑 키워드 트렌드 데이터', 2024년.</li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer">
-    <div class="client">TAEYOUNG ELECTRONICS</div>
-    <div class="confidential">CONFIDENTIAL</div>
-    <div class="copyright">©<strong>found/Founded</strong>. All rights reserved.</div>
-  </div>
-</div>
 
 </body>
 </html>
-```
